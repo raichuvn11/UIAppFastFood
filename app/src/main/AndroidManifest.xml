@@ -21,6 +21,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.CartActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.NotificationActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.ProfileSettingActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.PersonalDataActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
