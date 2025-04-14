@@ -13,14 +13,25 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/iv_orderItemImg"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_orderItem"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_foreground"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            android:layout_marginStart="12dp"
+            app:cardBackgroundColor="@color/light_bg"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:id="@+id/iv_orderItemImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_foreground"/>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/llItemInfo1"
@@ -30,8 +41,8 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_orderItemImg"
-            app:layout_constraintTop_toTopOf="@id/iv_orderItemImg">
+            app:layout_constraintStart_toEndOf="@id/cv_orderItem"
+            app:layout_constraintTop_toTopOf="@id/cv_orderItem">
 
             <TextView
                 android:id="@+id/tv_orderItemName"

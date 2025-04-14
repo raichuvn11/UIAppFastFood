@@ -8,65 +8,77 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.model.NotificationItem;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-public class NotificationAdapter extends BaseAdapter {
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
 
     private Context context;
     private List<NotificationItem> notificationItems;
+    private OnItemClickListener listener;
 
-    public NotificationAdapter(Context context, List<NotificationItem> notificationItems) {
+    public interface OnItemClickListener {
+        void onItemClick(NotificationItem item);
+    }
+
+    public NotificationAdapter(Context context, List<NotificationItem> items, OnItemClickListener listener) {
         this.context = context;
-        this.notificationItems = notificationItems;
+        this.notificationItems = items;
+        this.listener = listener;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.notification_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public int getCount() {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        NotificationItem item = notificationItems.get(position);
+        holder.ivIcon.setImageResource(item.getIconResId());
+        holder.tvTitle.setText(item.getTitle());
+        if (!item.isRead()) {
+            holder.tvTitle.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark));
+        } else {
+            holder.tvTitle.setTextColor(ContextCompat.getColor(context, android.R.color.black));
+        }
+
+        holder.tvDescription.setText(item.getDescription());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        String formattedTime = sdf.format(new Date(item.getTimeStamp()));
+        holder.tvDate.setText(formattedTime);
+
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
+    }
+
+    @Override
+    public int getItemCount() {
         return notificationItems.size();
     }
 
-    @Override
-    public Object getItem(int i) {
-        return notificationItems.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.notification_item, parent, false);
-            holder = new ViewHolder(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        // Gán dữ liệu
-        NotificationItem notificationItem = notificationItems.get(i);
-        holder.ivIcon.setImageResource(notificationItem.getIconResId());
-        holder.tvTitle.setText(notificationItem.getTitle());
-        holder.tvDescription.setText(notificationItem.getDescription());
-
-        return convertView;
-    }
-
-    private static class ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivIcon;
-        TextView tvTitle, tvDescription;
+        TextView tvTitle, tvDescription, tvDate;
 
-        ViewHolder(View view) {
-            ivIcon = view.findViewById(R.id.iv_notificationIcon);
-            tvTitle = view.findViewById(R.id.tv_notificationTitle);
-            tvDescription = view.findViewById(R.id.tv_notificationDescription);
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ivIcon = itemView.findViewById(R.id.iv_notificationIcon);
+            tvTitle = itemView.findViewById(R.id.tv_notificationTitle);
+            tvDescription = itemView.findViewById(R.id.tv_notificationDescription);
+            tvDate = itemView.findViewById(R.id.tv_notificationDate);
         }
     }
-
 }
+

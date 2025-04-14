@@ -1,5 +1,6 @@
 package com.example.uiappfastfood.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.model.OrderItem;
 
@@ -35,10 +37,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         OrderItem orderItem = orderItems.get(position);
-        holder.ivImg.setImageResource(orderItem.getImageResId());
+        Glide.with(context)
+                .load(orderItem.getImg()) // Thay vì dùng getImageResId()
+                .placeholder(R.drawable.ic_launcher_foreground) // Ảnh mặc định khi tải
+                .error(R.drawable.ic_edit_avatar) // Ảnh lỗi nếu không tải được
+                .into(holder.ivImg);
         holder.tvName.setText(orderItem.getName());
-        holder.tvPrice.setText(orderItem.getPrice());
-        holder.tvCount.setText(String.valueOf(orderItem.getCount()));
+        holder.tvPrice.setText(String.format("%,.0fđ", orderItem.getPrice()));
+        holder.tvCount.setText(String.valueOf(orderItem.getQuantity()));
     }
 
     @Override

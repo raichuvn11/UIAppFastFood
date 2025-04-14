@@ -1,17 +1,26 @@
 package com.example.uiappfastfood.model;
 
 public class OrderItem {
+    private Long itemId;
     private String name;
-    private String price;
+    private double price;
 
-    private int count;
-    private int imageResId;
+    private int quantity;
+    private String img;
 
-    public OrderItem(String name, String price, int count, int imageResId) {
+    public OrderItem(Long itemId, String name, double price, int quantity, String img) {
+        this.itemId = itemId;
         this.name = name;
         this.price = price;
-        this.count = count;
-        this.imageResId = imageResId;
+        this.quantity = quantity;
+        this.img = img;
+    }
+
+    public Long getItemId() {
+        return itemId;
+    }
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
     public String getName() {
@@ -22,26 +31,27 @@ public class OrderItem {
         this.name = name;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public int getImageResId() {
-        return imageResId;
+    public String getImg() {
+        return img;
     }
 
-    public void setImageResId(int imageResId) {
-        this.imageResId = imageResId;
-    }
-    public int getCount() {
-        return count;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

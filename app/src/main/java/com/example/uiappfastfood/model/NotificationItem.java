@@ -4,11 +4,16 @@ public class NotificationItem {
     private int iconResId;
     private String title;
     private String description;
+    private long timeStamp;
 
-    public NotificationItem(int iconResId, String title, String description) {
+    private boolean isRead;
+
+    public NotificationItem(int iconResId, String title, String description, long timeStamp) {
         this.iconResId = iconResId;
         this.title = title;
         this.description = description;
+        this.timeStamp = timeStamp;
+        this.isRead = false;
     }
 
     public int getIconResId() {
@@ -33,5 +38,21 @@ public class NotificationItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 }

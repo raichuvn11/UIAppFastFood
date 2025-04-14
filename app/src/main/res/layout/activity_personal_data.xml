@@ -11,7 +11,8 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingTop="30dp"
+        android:paddingHorizontal="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -51,7 +52,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/profile_section"
         android:layout_width="match_parent"
+        android:fillViewport="true"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerLayout">
@@ -75,7 +78,7 @@
                     android:layout_height="wrap_content">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profile_image"
+                        android:id="@+id/img_user"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/ic_launcher_foreground"
@@ -83,6 +86,7 @@
                         app:civ_border_width="2dp" />
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_upload_avatar"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="bottom|end"
@@ -100,6 +104,7 @@
                 </FrameLayout>
 
                 <TextView
+                    android:id="@+id/tv_titleUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -109,6 +114,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_titleEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -134,7 +140,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/etFullName"
+                    android:id="@+id/et_userName"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="10dp"
@@ -157,73 +163,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Date of birth"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/etDateOfBirth"
-                    android:inputType="datetime"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:padding="10dp"
-                    android:background="@drawable/bg_edit_text"
-                    android:text="1/1/2025"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/llProfile"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Gender"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/etGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:padding="10dp"
-                    android:background="@drawable/bg_edit_text"
-                    android:drawableEnd="@drawable/ic_dropdown_arrow"
-                    android:text="Male"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/llProfile"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:text="Phone"
                     android:textColor="@color/secondary_text"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/etPhone"
+                    android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="10dp"
@@ -253,7 +199,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/etEmail"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="10dp"
@@ -266,22 +212,61 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/llProfile"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Address"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_edit_text"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:text="Võ Văn Ngân, Thủ Đức, Tp.HCM"
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/llProfile"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_save"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_orange_button"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="Save"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"/>
+            </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSave"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:background="@drawable/bg_orange_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
