@@ -1,1 +1,29 @@
-{"installed":{"client_id":"5028364874-gcsunmkije5pt9ru2gtq24tdh3ftknre.apps.googleusercontent.com","project_id":"crack-adapter-456707-n6","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"}}
+{
+  "project_info": {
+    "project_number": "533715295233",
+    "project_id": "android-fast-food-app",
+    "storage_bucket": "android-fast-food-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533715295233:android:bf2fd1ce5e5e789559f400",
+        "android_client_info": {
+          "package_name": "com.example.uiappfastfood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLu_-GqHDnT1UuMzeex1ThHtPuXKCFJgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
