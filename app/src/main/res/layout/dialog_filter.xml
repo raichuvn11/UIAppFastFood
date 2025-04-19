@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Search Filter -->
+    <EditText
+        android:id="@+id/etSearchFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Filter"
+        android:inputType="text" />
+
+    <!-- Category Spinner -->
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Vegan Checkbox -->
+    <CheckBox
+        android:id="@+id/cbVegan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vegan" />
+
+    <!-- Gluten-Free Checkbox -->
+    <CheckBox
+        android:id="@+id/cbGlutenFree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gluten-Free" />
+</LinearLayout>

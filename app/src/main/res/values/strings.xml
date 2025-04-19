@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">UIAppFastFood</string>
+    <string name="goong_api_url">https://rsapi.goong.io/</string>
+    <string name="goong_map_url">https://tiles.goong.io</string>
+    <string name="goong_api_key">SkhZNNKpRJ9IXSrJUusq0HPRMgOoKCDKmcLAPe19</string>
+    <string name="goong_map_key">0SDM8uGP28qNs4n4nrWjg1dhM3gFwKxjlfg9fnbn</string>
+    <string name="server_client_id">288243577014-798i3784366217gjfi218kdb53gsurhd.apps.googleusercontent.com</string>
+    <string-array name="category_array">
+        <item>All</item>
+        <item>Pizza</item>
+        <item>Burger</item>
+        <item>Salad</item>
+        <item>Drinks</item>
+        <item>Desserts</item>
+    </string-array>
 </resources>

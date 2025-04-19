@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:id="@+id/otpRegisterLayout"
+    tools:context=".activity.OTPRegisterActivity">
+
+    <!-- Nút Back -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Tiêu đề -->
+
+    <!-- Tiêu đề phụ -->
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="OTP"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="@color/black"
+
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email verification"
+        android:textSize="40sp"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <!-- Mô tả -->
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter the verification code we sent you on:"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter_18pt_medium"
+        android:textColor="#878787"
+        app:layout_constraintTop_toBottomOf="@id/txtSubtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Email ẩn -->
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alberts******@gmail.com"
+        android:textSize="16sp"
+
+        android:fontFamily="@font/inter_18pt_medium"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/txtDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- OTP Input (6 số) -->
+    <LinearLayout
+        android:id="@+id/otpLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/txtEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/otp1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:maxLength="1"
+            android:inputType="number"
+            android:background="@drawable/otp_box"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/otp2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:maxLength="1"
+            android:inputType="number"
+            android:background="@drawable/otp_box"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/otp3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:maxLength="1"
+            android:inputType="number"
+            android:background="@drawable/otp_box"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/otp4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:maxLength="1"
+            android:inputType="number"
+            android:background="@drawable/otp_box"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/otp5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:maxLength="1"
+            android:inputType="number"
+            android:background="@drawable/otp_box"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/otp6"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:maxLength="1"
+            android:inputType="number"
+            android:background="@drawable/otp_box"/>
+    </LinearLayout>
+
+
+    <!-- Resend Code -->
+
+    <!-- Đồng hồ đếm ngược -->
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Didn't receive code? "
+        android:textColor="#878787"
+        android:fontFamily="@font/inter_18pt_medium"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/otpLayout" />
+
+    <TextView
+        android:id="@+id/txtResend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Resend"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="@color/orange"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txt"
+        app:layout_constraintTop_toBottomOf="@id/otpLayout" />
+
+    <TextView
+        android:id="@+id/txtTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1:00"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/txtResend"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Nút Continue -->
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:fontFamily="@font/inter_semibold"
+        android:background="@drawable/custom_button"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/orange"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/txtTimer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
