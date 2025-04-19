@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+
+    <!-- Nền mặc định (bo góc, màu trắng) -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" /> <!-- Bo góc -->
+            <solid android:color="@color/white" /> <!-- Màu nền -->
+            <padding android:left="10dp" android:right="10dp" android:top="10dp" android:bottom="10dp"/>
+        </shape>
+    </item>
+
+    <!-- Hiệu ứng nhấn (màu ripple lan tỏa) -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <solid android:color="@android:color/darker_gray" /> <!-- Màu khi nhấn -->
+        </shape>
+    </item>
+</ripple>
+
