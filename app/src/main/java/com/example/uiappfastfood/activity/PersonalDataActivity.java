@@ -53,7 +53,6 @@ public class PersonalDataActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_personal_data);
 
         tvTitleUserName = findViewById(R.id.tv_titleUserName);

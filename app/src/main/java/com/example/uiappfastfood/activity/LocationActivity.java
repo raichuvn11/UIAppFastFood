@@ -55,7 +55,6 @@ public class LocationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
-        EdgeToEdge.enable(this);
 
         etStreet = findViewById(R.id.et_street);
         etPhuong = findViewById(R.id.et_phuong);

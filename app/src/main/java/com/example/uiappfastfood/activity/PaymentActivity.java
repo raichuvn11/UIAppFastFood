@@ -40,7 +40,6 @@ public class PaymentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_payment);
 
         recyclerView = findViewById(R.id.rv_orderItems);

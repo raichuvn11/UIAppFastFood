@@ -19,7 +19,6 @@ public class ProfileSettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile_setting);
 
         tvNotiCount = findViewById(R.id.tv_notiCount);

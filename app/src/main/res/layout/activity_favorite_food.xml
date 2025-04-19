@@ -11,7 +11,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
+        android:paddingVertical="10dp"
         android:paddingHorizontal="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,39 +73,48 @@
             android:textColor="#C2C2C2"
             android:textSize="16sp"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:id="@+id/rv_favoriteItem"/>
+
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/layout_empty"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center"
+            android:layout_marginTop="50dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/etPromoCode"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/etPromoCode">
 
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:src="@drawable/img_no_search_result"/>
+                android:src="@drawable/img_no_search_result" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Không tìm thấy kết quả!"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"
+                android:text="Không tìm thấy kết quả!"
                 android:textSize="20sp"
-                android:layout_gravity="center"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vui lòng kiểm tra lại kết nối mạng, hoặc thử lại sau!"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:textSize="16sp"/>
+                android:text="Vui lòng kiểm tra lại kết nối mạng, hoặc thử lại sau!"
+                android:textSize="16sp" />
 
         </LinearLayout>
 

@@ -38,9 +38,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         OrderItem orderItem = orderItems.get(position);
         Glide.with(context)
-                .load(orderItem.getImg()) // Thay vì dùng getImageResId()
-                .placeholder(R.drawable.ic_launcher_foreground) // Ảnh mặc định khi tải
-                .error(R.drawable.ic_edit_avatar) // Ảnh lỗi nếu không tải được
+                .load(orderItem.getImg())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_edit_avatar)
                 .into(holder.ivImg);
         holder.tvName.setText(orderItem.getName());
         holder.tvPrice.setText(String.format("%,.0fđ", orderItem.getPrice()));

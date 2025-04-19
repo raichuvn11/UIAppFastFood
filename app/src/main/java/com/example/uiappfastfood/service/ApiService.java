@@ -3,6 +3,7 @@ package com.example.uiappfastfood.service;
 import com.example.uiappfastfood.model.CartItem;
 import com.example.uiappfastfood.model.Coupon;
 import com.example.uiappfastfood.model.DeviceTokenRequest;
+import com.example.uiappfastfood.model.FavoriteItem;
 import com.example.uiappfastfood.model.Order;
 import com.example.uiappfastfood.model.OrderStatus;
 import com.example.uiappfastfood.model.User;
@@ -20,6 +21,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -61,4 +63,7 @@ public interface ApiService {
 
     @GET("order/apply-code")
     Call<Coupon> applyCouponCode(@Query("code") String code);
+
+    @GET("favorites/{userId}")
+    Call<List<FavoriteItem>> getFavoriteItems(@Path("userId") Long userId);
 }
