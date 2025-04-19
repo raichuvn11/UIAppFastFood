@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">UIAppFastFood</string>
+
     <string name="goong_api_url">https://rsapi.goong.io/</string>
     <string name="goong_map_url">https://tiles.goong.io</string>
     <string name="goong_api_key">SkhZNNKpRJ9IXSrJUusq0HPRMgOoKCDKmcLAPe19</string>
