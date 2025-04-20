@@ -19,6 +19,7 @@ import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.config.RetrofitClient;
 import com.example.uiappfastfood.model.User;
 import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 import com.example.uiappfastfood.util.FileUtil;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -47,7 +48,7 @@ public class PersonalDataActivity extends AppCompatActivity {
     private AppCompatButton btnSave;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageUri;
-    private int userId = 1;
+    private int userId;
     private User user;
     private boolean hasSelectedNewImage = false;
 
@@ -55,6 +56,9 @@ public class PersonalDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_data);
+
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        userId = sharedPrefManager.getUserId().intValue();
 
         tvTitleUserName = findViewById(R.id.tv_titleUserName);
         tvTitleEmail = findViewById(R.id.tv_titleEmail);

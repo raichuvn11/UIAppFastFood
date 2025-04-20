@@ -35,6 +35,8 @@ public class OnboardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        /*sharedPrefManager.clearUserId();*/
 
         // gửi token device cho server, demo đặt ở đây
         DeviceTokenUtil.getDeviceToken();

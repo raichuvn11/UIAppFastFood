@@ -1,5 +1,6 @@
 package com.example.uiappfastfood.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -22,6 +23,7 @@ import com.example.uiappfastfood.DTO.response.GenericResponse;
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.api.ApiService;
 import com.example.uiappfastfood.api.RetrofitClient;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -150,8 +152,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     GenericResponse responseBody = response.body();
                     if ("success".equals(responseBody.getStatus())) {
-                        Toast.makeText(ResetPasswordActivity.this, "Password reset successfully", Toast.LENGTH_SHORT).show();
-                        finish(); // Close this activity and return to login screen
+                        showChangePasswordSuccessBottomSheet();
                     } else {
                         Toast.makeText(ResetPasswordActivity.this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -171,5 +172,20 @@ public class ResetPasswordActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // Optionally, cancel any background tasks if needed
+    }
+    private void showChangePasswordSuccessBottomSheet() {
+        View view = getLayoutInflater().inflate(R.layout.password_change_bottom, null);
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        dialog.setContentView(view);
+        dialog.show();
+
+        Button btnContinue = view.findViewById(R.id.btnVerifyAccount);
+        btnContinue.setOnClickListener(v -> {
+            dialog.dismiss();
+            // Chuyển đến màn hình đăng nhập
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 }

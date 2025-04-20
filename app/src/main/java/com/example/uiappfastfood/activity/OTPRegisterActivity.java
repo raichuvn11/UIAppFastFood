@@ -6,6 +6,7 @@ import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +56,8 @@ public class OTPRegisterActivity extends AppCompatActivity {
         email = getIntent().getStringExtra("email");
         username = getIntent().getStringExtra("username");
         password = getIntent().getStringExtra("password");
+
+        Log.e("OTPRegisterActivity", "Password: " + password + "Email: " + email + "Username: " + username );
 
         // Set email to the TextView
         txtEmail.setText(email);
@@ -128,7 +131,7 @@ public class OTPRegisterActivity extends AppCompatActivity {
 
     private void validateOTPWithServer(String otpCode) {
 
-        apiService.verifyOtp(new VerifyOtpRequest(email, otpCode)).enqueue(new Callback<GenericResponse>() {
+        apiService.verifyOtp(new VerifyOtpRequest(username,email, password, otpCode)).enqueue(new Callback<GenericResponse>() {
             @Override
             public void onResponse(Call<GenericResponse> call, Response<GenericResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {

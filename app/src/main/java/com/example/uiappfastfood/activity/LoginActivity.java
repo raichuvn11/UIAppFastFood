@@ -145,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginResponse.getStatus().equals("success"))
                     {
 
-                        saveIDToSharedPreferences(loginResponse.getData().getUserId());
+                        saveIDToSharedPreferences(loginResponse.getData().getUserId(),"google");
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
                     else
@@ -167,9 +167,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void saveIDToSharedPreferences(Long id) {
+    private void saveIDToSharedPreferences(Long id, String type) {
         SharedPrefManager sharedPrefManager = new SharedPrefManager(LoginActivity.this);
-        sharedPrefManager.saveUserId(id);
+        sharedPrefManager.saveUserId(id,type);
     }
 
     private void navigateToHome() {
@@ -195,14 +195,14 @@ public class LoginActivity extends AppCompatActivity {
 
                         String status = loginResponse.getStatus();
                         String message = loginResponse.getMessage();
-                        Long id = loginResponse.getData().getUserId();
+
 
                         Log.d("LoginResponse", "Status: " + status);
                         Log.d("LoginResponse", "Message: " + message);
 
                         if ("success".equals(status)) {
-
-                            saveIDToSharedPreferences(id);
+                            Long id = loginResponse.getData().getUserId();
+                            saveIDToSharedPreferences(id,"normal");
                             navigateToHome();
                             Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                         } else {
