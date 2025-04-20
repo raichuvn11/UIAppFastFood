@@ -21,6 +21,10 @@ import com.example.uiappfastfood.activity.OrderStatusActivity;
 import com.example.uiappfastfood.activity.LocationActivity;
 import com.example.uiappfastfood.activity.LoginActivity;
 import com.example.uiappfastfood.sharePreference.SharedPrefManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
 public class ProfileSettingFragment extends Fragment {
 
     private TextView tvNotiCount;
@@ -85,15 +89,33 @@ public class ProfileSettingFragment extends Fragment {
 
         dialogView.findViewById(R.id.btn_cancel).setOnClickListener(v -> dialog.dismiss());
         dialogView.findViewById(R.id.btn_confirm_signout).setOnClickListener(v -> {
-
             SharedPrefManager sharedPrefManager = new SharedPrefManager(requireContext());
-            sharedPrefManager.clearUserId();
+            String loginType = sharedPrefManager.getType();
 
-            Intent intent = new Intent(requireContext(), LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa back stack
-            startActivity(intent);
-            dialog.dismiss();
-        });
+            if ("google".equals(loginType)) {
+                GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(
+                        requireContext(),
+                        new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                .requestEmail()
+                                .build()
+                );
+
+                googleSignInClient.signOut().addOnCompleteListener(task -> {
+                    sharedPrefManager.clearUserId();
+                    redirectToLogin();
+                });
+            } else {
+                sharedPrefManager.clearUserId();
+                redirectToLogin();
+            }
+
+            dialog.dismiss(); // đóng dialog sau khi xử lý
+        });;
+    }
+    private void redirectToLogin() {
+        Intent intent = new Intent(requireContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
 

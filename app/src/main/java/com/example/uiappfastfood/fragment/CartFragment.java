@@ -29,6 +29,7 @@ import com.example.uiappfastfood.model.Order;
 import com.example.uiappfastfood.model.OrderItem;
 import com.example.uiappfastfood.model.User;
 import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 import com.example.uiappfastfood.util.NotificationUtil;
 import com.example.uiappfastfood.activity.LocationActivity;
 import com.example.uiappfastfood.activity.PaymentActivity;
@@ -48,7 +49,7 @@ public class CartFragment extends Fragment {
     private TextView tvTotalItems, tvTotalPrice, tvDiscount, tvFinalTotalPrice, tvDeliveryFee, tvOrderAddress, tvNotiCount;
     private ApiService apiService;
     private Coupon coupon;
-    private int userId = 1;
+    private int userId;
     private User user;
     private String address = "";
     private ConstraintLayout mainLayout;
@@ -58,7 +59,8 @@ public class CartFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(getContext());
+        userId = sharedPrefManager.getUserId().intValue();
         apiService = RetrofitClient.getClient().create(ApiService.class);
         initViews(view);
         loadCartItems();
@@ -128,6 +130,7 @@ public class CartFragment extends Fragment {
                         getPaymentSummary();
                     }
                 } else {
+                    Log.e("CartFragment", "API Error: " + response.errorBody());
                     Toast.makeText(getContext(), "Failed to load cart", Toast.LENGTH_SHORT).show();
                 }
             }

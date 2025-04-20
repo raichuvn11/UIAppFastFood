@@ -19,6 +19,7 @@ import com.example.uiappfastfood.adapter.FavoriteItemAdapter;
 import com.example.uiappfastfood.config.RetrofitClient;
 import com.example.uiappfastfood.model.FavoriteItem;
 import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +34,14 @@ public class FavouriteFoodActivity extends AppCompatActivity {
     private FavoriteItemAdapter favoriteItemAdapter;
     private List<FavoriteItem> favoriteItems;
     private ApiService apiService;
-    private Long userId = 1L;
+    private Long userId ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_food);
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        userId = sharedPrefManager.getUserId();
 
         searchFavorite = findViewById(R.id.et_search_favorite);
         searchFavorite.addTextChangedListener(new TextWatcher() {

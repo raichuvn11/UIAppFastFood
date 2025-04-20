@@ -42,7 +42,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    SharedPrefManager sharedPrefManager = new SharedPrefManager(RegisterActivity.this);
+
 
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 100;
@@ -90,7 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
     private void saveTokenToSharedPreferences(Long id) {
-        sharedPrefManager.saveUserId(id);
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(RegisterActivity.this);
+        sharedPrefManager.saveUserId(id,"google");
     }
     private void sendIdTokenToServer(String idToken) {
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
@@ -229,12 +230,13 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     GenericResponse registerResponse = response.body();
                     if ("success".equals(registerResponse.getStatus())) {
-                        hideLoading();
                         navigateToOTPRegisterActivity(registerResponse);
                     } else {
+                        hideLoading();
                         Toast.makeText(RegisterActivity.this, registerResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    hideLoading();
                     Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -252,6 +254,8 @@ public class RegisterActivity extends AppCompatActivity {
         intent.putExtra("email", etEmail.getText().toString().trim());
         intent.putExtra("username", etUsername.getText().toString().trim());
         intent.putExtra("password", etPassword.getText().toString().trim());
+        Log.e("RegisterActivity", "Password: " + etPassword.getText().toString().trim());
+        hideLoading();
         startActivity(intent);
     }
 

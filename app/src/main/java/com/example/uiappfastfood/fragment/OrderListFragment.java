@@ -24,6 +24,7 @@ import com.example.uiappfastfood.adapter.OrderStatusAdapter;
 import com.example.uiappfastfood.config.RetrofitClient;
 import com.example.uiappfastfood.model.OrderStatus;
 import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -98,7 +99,8 @@ public class OrderListFragment extends Fragment {
     }
 
     private void getOrdersByStatus(String status) {
-        Long userId = 1L;
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(getContext());
+        Long userId = sharedPrefManager.getUserId();
         apiService = RetrofitClient.getClient().create(ApiService.class);
         apiService.getOrdersByStatus(status, userId).enqueue(new Callback<List<OrderStatus>>() {
             @Override
