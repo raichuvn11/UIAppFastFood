@@ -47,7 +47,7 @@ public interface ApiService {
     Call<Void> updateDeviceToken(@Body DeviceTokenRequest request);
 
     @Multipart
-    @PUT("user/update-profile")
+    @POST("user/update-profile")
     Call<Void> updateUserProfile(
             @Part("id") RequestBody id,
             @Part("username") RequestBody username,
@@ -66,4 +66,7 @@ public interface ApiService {
 
     @GET("favorites/{userId}")
     Call<List<FavoriteItem>> getFavoriteItems(@Path("userId") Long userId);
+
+    @DELETE("cart/delete-item")
+    Call<Boolean> deleteCartItem(@Query("userId") Long userId, @Query("itemId") Long itemId);
 }

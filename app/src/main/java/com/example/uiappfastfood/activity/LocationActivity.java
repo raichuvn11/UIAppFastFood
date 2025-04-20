@@ -73,6 +73,7 @@ public class LocationActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_save).setOnClickListener(v -> {
             updateUserProfile();
+
         });
     }
 
@@ -164,6 +165,8 @@ public class LocationActivity extends AppCompatActivity {
     }
 
     private void updateUserProfile() {
+        System.out.println("user: " + user);
+        Toast.makeText(LocationActivity.this, "User: " + user.getUsername(), Toast.LENGTH_SHORT).show();
         fullAddress = etStreet.getText().toString() + ", " + etPhuong.getText().toString() + ", " + etQuan.getText().toString() + ", " + etTinh.getText().toString();
         user.setAddress(fullAddress);
 
@@ -180,8 +183,9 @@ public class LocationActivity extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(LocationActivity.this, "Cập nhật địa chỉ thành công", Toast.LENGTH_SHORT).show();
+                            finish();
                         } else {
-                            Log.e("PersonalDataActivity", "Response error: " + response.code() + " - " + response.message());
+                            Log.e("PersonalDataActivity", "Response error: " + response.code() + " - " + response.body());
                         }
                     }
 

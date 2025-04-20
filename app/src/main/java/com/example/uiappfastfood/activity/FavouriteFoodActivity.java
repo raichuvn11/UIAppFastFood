@@ -1,8 +1,12 @@
 package com.example.uiappfastfood.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ import retrofit2.Response;
 
 public class FavouriteFoodActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private EditText searchFavorite;
     private FavoriteItemAdapter favoriteItemAdapter;
     private List<FavoriteItem> favoriteItems;
     private ApiService apiService;
@@ -34,6 +39,20 @@ public class FavouriteFoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_food);
+
+        searchFavorite = findViewById(R.id.et_search_favorite);
+        searchFavorite.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterFavoriteItems(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
         recyclerView = findViewById(R.id.rv_favoriteItem);
         getFavoriteItems();
@@ -52,7 +71,12 @@ public class FavouriteFoodActivity extends AppCompatActivity {
             public void onResponse(Call<List<FavoriteItem>> call, Response<List<FavoriteItem>> response) {
                 if(response.isSuccessful() && response.body() != null){
                     favoriteItems = response.body();
-                    favoriteItemAdapter = new FavoriteItemAdapter(FavouriteFoodActivity.this, favoriteItems);
+                    favoriteItemAdapter = new FavoriteItemAdapter(FavouriteFoodActivity.this, favoriteItems, item -> {
+
+                        //handle click item
+                        Toast.makeText(FavouriteFoodActivity.this, "Đã click", Toast.LENGTH_SHORT).show();
+
+                    });
                     recyclerView.setAdapter(favoriteItemAdapter);
                     if(favoriteItems.isEmpty()){
                         LinearLayout emptyLayout = findViewById(R.id.layout_empty);
@@ -69,4 +93,15 @@ public class FavouriteFoodActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void filterFavoriteItems(String query) {
+        List<FavoriteItem> filteredList = new ArrayList<>();
+        for (FavoriteItem item : favoriteItems) {
+            if (item.getName().toLowerCase().contains(query.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        favoriteItemAdapter.filterList(filteredList);
+    }
+
 }

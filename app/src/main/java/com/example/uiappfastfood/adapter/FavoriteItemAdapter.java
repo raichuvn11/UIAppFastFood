@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,9 +22,15 @@ public class FavoriteItemAdapter extends RecyclerView.Adapter<FavoriteItemAdapte
     private List<FavoriteItem> favoriteItems;
     private Context context;
 
-    public FavoriteItemAdapter(Context context, List<FavoriteItem> favoriteItems) {
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(FavoriteItem item);
+    }
+    public FavoriteItemAdapter(Context context, List<FavoriteItem> favoriteItems, OnItemClickListener listener) {
         this.favoriteItems = favoriteItems;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -43,6 +50,7 @@ public class FavoriteItemAdapter extends RecyclerView.Adapter<FavoriteItemAdapte
                 .into(holder.ivImg);
         holder.tvName.setText(item.getName());
         holder.tvPrice.setText(String.format("%,.0fđ", item.getPrice()));
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
 
     @Override
@@ -63,4 +71,10 @@ public class FavoriteItemAdapter extends RecyclerView.Adapter<FavoriteItemAdapte
             tvPrice = itemView.findViewById(R.id.tv_favItemPrice);
         }
     }
+
+    public void filterList(List<FavoriteItem> filteredList) {
+        this.favoriteItems = filteredList;
+        notifyDataSetChanged();
+    }
+
 }

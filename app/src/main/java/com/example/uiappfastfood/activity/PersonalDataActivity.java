@@ -49,6 +49,7 @@ public class PersonalDataActivity extends AppCompatActivity {
     private Uri imageUri;
     private int userId = 1;
     private User user;
+    private boolean hasSelectedNewImage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,7 @@ public class PersonalDataActivity extends AppCompatActivity {
             imageUri = data.getData();
             if (imageUri != null) {
                 imgUser.setImageURI(imageUri);
+                hasSelectedNewImage = true;
                 Log.d("PersonalDataActivity", "Image URI: " + imageUri.toString());
             } else {
                 Log.e("PersonalDataActivity", "Image URI is null!");
@@ -126,12 +128,13 @@ public class PersonalDataActivity extends AppCompatActivity {
                     etPhone.setText(user.getPhone());
                     etAddress.setText(user.getAddress());
 
-                    System.out.println(user.getImg());
-                    Glide.with(PersonalDataActivity.this)
-                            .load("http://192.168.1.2:8080"+ user.getImg())
-                            .placeholder(R.drawable.ic_launcher_foreground)
-                            .error(R.drawable.ic_launcher_foreground)
-                            .into(imgUser);
+                    if (!hasSelectedNewImage) {
+                        Glide.with(PersonalDataActivity.this)
+                                .load("http://192.168.1.6:8080" + user.getImg())
+                                .placeholder(R.drawable.ic_launcher_foreground)
+                                .error(R.drawable.ic_launcher_foreground)
+                                .into(imgUser);
+                    }
                 }
                 else{
                     Toast.makeText(PersonalDataActivity.this, "Failed to load user profile", Toast.LENGTH_SHORT).show();
@@ -197,6 +200,7 @@ public class PersonalDataActivity extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(PersonalDataActivity.this, "Cập nhật hồ sơ thành công", Toast.LENGTH_SHORT).show();
+                            hasSelectedNewImage = false;
                             loadUserData();
                         } else {
                             Toast.makeText(PersonalDataActivity.this, "Cập nhật hồ sơ thất bại", Toast.LENGTH_SHORT).show();

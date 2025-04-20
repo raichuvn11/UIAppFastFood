@@ -9,17 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.uiappfastfood.R;
-import com.example.uiappfastfood.activity.CartActivity;
 import com.example.uiappfastfood.model.CartItem;
-
 import java.util.List;
+import com.example.uiappfastfood.config.RetrofitClient;
+import com.example.uiappfastfood.service.ApiService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     private final Context context;
@@ -95,20 +99,42 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         // delete cart item
         holder.ivDelete.setOnClickListener(v -> {
-            cartItems.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, cartItems.size());
 
+            System.out.println("Clicked ");
             //api delete cart item//
+            ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+            Long userId = 1L;
+            Long itemId = cartItem.getItemId();
+            apiService.deleteCartItem(userId, itemId).enqueue(new Callback<Boolean>(){
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    if (response.isSuccessful() && response.body() != null){
+                        Boolean isDeleted = response.body();
+                        System.out.println("Check xoa: "+ isDeleted);
+                        if (isDeleted) {
+                            Toast.makeText(context, "Đã xóa sản phẩm khỏi giỏ hàng", Toast.LENGTH_SHORT).show();
+                            cartItems.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, cartItems.size());
 
-            if (onCartUpdatedListener != null) {
-                onCartUpdatedListener.onCartUpdated();
-            }
+                            if (onCartUpdatedListener != null) {
+                                onCartUpdatedListener.onCartUpdated();
+                            }
 
-            // Kiểm tra nếu giỏ hàng trống thì gọi callback
-            if (cartItems.isEmpty() && onCartEmptyListener != null) {
-                onCartEmptyListener.onCartEmpty();
-            }
+                            if (cartItems.isEmpty() && onCartEmptyListener != null) {
+                                onCartEmptyListener.onCartEmpty();
+                            }
+                        } else {
+                            Toast.makeText(context, "Xóa sản phẩm khỏi giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+                    Log.e("CartActivity", "API Coupon Error: " + t.getMessage());
+                }
+            });
         });
     }
 

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".MainActivity">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
@@ -17,24 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvBack"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            android:foreground="@drawable/circle_border"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_back" />
-
-        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvTitle"
@@ -391,150 +372,7 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_arrow_right"/>
             </LinearLayout>
-
-
-
-<!--            &lt;!&ndash; Sign Out Button &ndash;&gt;-->
-<!--            <LinearLayout-->
-<!--                android:id="@+id/btn_signout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="24dp"-->
-<!--                android:background="@drawable/bg_orange_border"-->
-<!--                android:gravity="center"-->
-<!--                android:paddingVertical="12dp"-->
-<!--                android:paddingStart="16dp"-->
-<!--                android:orientation="horizontal">-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="20dp"-->
-<!--                android:layout_height="20dp"-->
-<!--                android:src="@drawable/ic_signout"-->
-<!--                android:layout_marginEnd="8dp"/>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Sign Out"-->
-<!--                android:textColor="@color/warning_red"-->
-<!--                android:textSize="14sp"-->
-<!--                android:textStyle="bold"/>-->
-<!--            </LinearLayout>-->
-
         </LinearLayout>
     </ScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomNavLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="8dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:background="@drawable/rounded_dialog"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/llHome"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_navbar_home" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:background="@drawable/rounded_dialog"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/llCart"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_navbar_cart" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:background="@drawable/rounded_dialog"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/llNotification"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_navbar_noti" />
-
-                    <TextView
-                        android:id="@+id/tv_notiCount"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_gravity="end|top"
-                        android:background="@drawable/bg_noti_count"
-                        android:gravity="center"
-                        android:text="5"
-                        android:textColor="@android:color/white"
-                        android:textSize="10sp"/>
-                </FrameLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llProfile"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_navbar_profile_active" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Setting"
-                    android:textColor="#FE8C00"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

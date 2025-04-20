@@ -15,7 +15,7 @@ import com.example.uiappfastfood.adapter.OnboardingAdapter;
 import com.example.uiappfastfood.model.OnboardingItem;
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.sharePreference.SharedPrefManager;
-
+import com.example.uiappfastfood.util.DeviceTokenUtil;
 import java.util.ArrayList;
 import java.util.List;
 import me.relex.circleindicator.CircleIndicator3;
@@ -35,6 +35,9 @@ public class OnboardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+
+        // gửi token device cho server, demo đặt ở đây
+        DeviceTokenUtil.getDeviceToken();
 
         // Ánh xạ view
         viewPager = findViewById(R.id.viewPager);

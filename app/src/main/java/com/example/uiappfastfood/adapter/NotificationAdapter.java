@@ -1,6 +1,7 @@
 package com.example.uiappfastfood.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NotificationItem item = notificationItems.get(position);
-        holder.ivIcon.setImageResource(item.getIconResId());
-        holder.tvTitle.setText(item.getTitle());
+        try {
+            holder.ivIcon.setImageResource(item.getIconResId());
+            holder.tvTitle.setText(item.getTitle());
+        } catch (Resources.NotFoundException e) {
+            holder.ivIcon.setImageResource(R.drawable.ic_launcher_foreground); // fallback drawable
+        }
         if (!item.isRead()) {
             holder.tvTitle.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark));
         } else {
