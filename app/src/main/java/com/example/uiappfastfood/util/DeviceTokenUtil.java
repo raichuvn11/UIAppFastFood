@@ -10,15 +10,16 @@ import retrofit2.Response;
 import com.example.uiappfastfood.service.ApiService;
 import com.example.uiappfastfood.config.RetrofitClient;
 import com.example.uiappfastfood.model.DeviceTokenRequest;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 public class DeviceTokenUtil {
-    public static void getDeviceToken() {
+    public static void getDeviceToken(Long userId) {
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         String token = task.getResult();
                         Log.d("FCM Token", "Device Token: " + token);
                         // Gửi token này về server
-                        sendTokenToServer(token);
+                        sendTokenToServer(userId, token);
                     } else {
                         // Xử lý lỗi
                         Log.w("FCM", "Fetching FCM registration token failed", task.getException());
@@ -26,11 +27,8 @@ public class DeviceTokenUtil {
                 });
     }
 
-    public static void sendTokenToServer(String token) {
+    public static void sendTokenToServer(Long userId, String token) {
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-
-        // lấy tạm user id
-        Long userId = 1L;
 
         DeviceTokenRequest request = new DeviceTokenRequest(userId, token);
 

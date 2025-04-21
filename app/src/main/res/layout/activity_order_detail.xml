@@ -211,9 +211,13 @@
                         android:layout_weight="1"/>
                     <TextView
                         android:id="@+id/tv_orderAddress"
-                        android:layout_width="wrap_content"
+                        android:layout_width="240dp"
                         android:layout_height="wrap_content"
                         android:text="Quang Trung, Thanh Xuan, Ha Noi"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"
                         android:textStyle="bold"
                         android:textSize="14sp"/>
                 </LinearLayout>

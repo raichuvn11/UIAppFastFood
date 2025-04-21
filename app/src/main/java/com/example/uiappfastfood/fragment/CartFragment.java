@@ -131,7 +131,7 @@ public class CartFragment extends Fragment {
                     }
                 } else {
                     Log.e("CartFragment", "API Error: " + response.errorBody());
-                    Toast.makeText(getContext(), "Failed to load cart", Toast.LENGTH_SHORT).show();
+                    switchToEmptyCart();
                 }
             }
 

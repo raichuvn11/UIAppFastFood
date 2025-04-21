@@ -138,7 +138,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                     orderItemList = new ArrayList<>(order.getOrderItems());
                     orderAdapter = new OrderAdapter(OrderDetailActivity.this, orderItemList);
                     recyclerView.setAdapter(orderAdapter);
-                    getOrderDetail(order.getOrderTotal(), order.getOrderAddress(), order.getRating(), order.getReview());
+                    getOrderDetail(order.getOrderTotal(), order.getOrderAddress(), order.getRating(), order.getReview(), order.getUserName(), order.getUserPhone());
 
                     switch (order.getOrderStatus()) {
                         case "confirmed":
@@ -179,7 +179,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void getOrderDetail(double orderTotal, String orderAddress, int rating, String review){
+    private void getOrderDetail(double orderTotal, String orderAddress, int rating, String review, String userName, String userPhone){
         double totalPrice = 0;
         int totalItem = 0;
         for (OrderItem item : orderItemList) {
@@ -192,5 +192,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         tvFinalTotalPrice.setText(String.format("%,.0fđ", orderTotal));
         ratingBar.setRating(rating);
         etReview.setText(review);
+        tvUserName.setText(userName);
+        tvUserPhone.setText(userPhone);
     }
 }

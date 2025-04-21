@@ -38,9 +38,6 @@ public class OnboardingActivity extends AppCompatActivity {
         SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
         /*sharedPrefManager.clearUserId();*/
 
-        // gửi token device cho server, demo đặt ở đây
-        DeviceTokenUtil.getDeviceToken();
-
         // Ánh xạ view
         viewPager = findViewById(R.id.viewPager);
         imageView = findViewById(R.id.imageView);
