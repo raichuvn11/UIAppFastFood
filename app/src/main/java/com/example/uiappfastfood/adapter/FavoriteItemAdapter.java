@@ -1,6 +1,8 @@
 package com.example.uiappfastfood.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.uiappfastfood.R;
+import com.example.uiappfastfood.activity.MenuActivity;
 import com.example.uiappfastfood.model.FavoriteItem;
 import com.example.uiappfastfood.model.OrderItem;
 
@@ -43,6 +46,10 @@ public class FavoriteItemAdapter extends RecyclerView.Adapter<FavoriteItemAdapte
     @Override
     public void onBindViewHolder(@NonNull FavoriteItemViewHolder holder, int position) {
         FavoriteItem item = favoriteItems.get(position);
+        // thêm logic lấy MenuItem từ id
+
+        //
+
         Glide.with(context)
                 .load(item.getImg())
                 .placeholder(R.drawable.ic_launcher_foreground)
@@ -51,6 +58,29 @@ public class FavoriteItemAdapter extends RecyclerView.Adapter<FavoriteItemAdapte
         holder.tvName.setText(item.getName());
         holder.tvPrice.setText(String.format("%,.0fđ", item.getPrice()));
         holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
+
+//        holder.itemView.setOnClickListener(v -> {
+//            Intent intent = new Intent(context, MenuActivity.class);
+//            intent.putExtra("menu_item_id", menuItem.getId());
+//            intent.putExtra("menu_item_name", menuItem.getName());
+//            intent.putExtra("menu_item_price", menuItem.getPrice());
+//            intent.putExtra("menu_item_desc", menuItem.getDescription());
+//            intent.putExtra("menu_item_img", menuItem.getImgMenuItem());
+//            intent.putExtra("menu_item_category", menuItem.getCategoryId());
+//            List<Long> favoriteIds = menuItem.getUserFavoriteIds();
+//            long[] favoriteIdArray = new long[favoriteIds.size()];
+//            for (int i = 0; i < favoriteIds.size(); i++) {
+//                favoriteIdArray[i] = favoriteIds.get(i);
+//            }
+//
+//            intent.putExtra("menu_item_favorite_ids", favoriteIdArray);
+//            intent.putExtra("context_class_simple", context.getClass().getSimpleName());
+//            context.startActivity(intent);
+//            if (context instanceof Activity) {
+//                ((Activity) context).finish();
+//            }
+//
+//        });
     }
 
     @Override

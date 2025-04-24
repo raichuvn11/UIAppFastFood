@@ -88,4 +88,12 @@ public class NotificationUtil {
         prefs.edit().putString(getNotificationKey(userId), updatedJson).apply();
     }
 
+    public static void clearNotificationList(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(context);
+        long userId = sharedPrefManager.getUserId();
+
+        prefs.edit().remove(getNotificationKey(userId)).apply();
+    }
+
 }

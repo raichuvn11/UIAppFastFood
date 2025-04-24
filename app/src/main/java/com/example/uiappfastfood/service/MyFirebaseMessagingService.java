@@ -25,34 +25,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d("FCM Service", "From: " + remoteMessage.getFrom());
 
-        // Kiểm tra notification
-        if (remoteMessage.getNotification() != null) {
-            String title = remoteMessage.getNotification().getTitle();
-            String body = remoteMessage.getNotification().getBody();
-            Log.d("FCM Service", "Notification Title: " + title + ", Body: " + body);
-            showNotification(title, body);
-        }
-
-        // Kiểm tra data payload (nếu có)
         if (remoteMessage.getData().size() > 0) {
-            Log.d("FCM Service", "Data Payload: " + remoteMessage.getData().toString());
-            // Xử lý data nếu cần
+            Log.d("FCM Service", "Data Payload: " + remoteMessage.getData());
             handleDataMessage(remoteMessage.getData());
         }
     }
 
     private void handleDataMessage(Map<String, String> data) {
-        // Xử lý data, ví dụ: hiển thị thông báo thủ công
         String title = data.get("title");
         String body = data.get("body");
+        String type = data.get("type");
+
         if (title != null && body != null) {
-            showNotification(title, body);
+            showNotification(title, body, type);
         }
     }
 
-    private void showNotification(String title, String message) {
+    private void showNotification(String title, String message, String type) {
 
-        NotificationItem item = new NotificationItem(R.drawable.ic_discount, title, message, System.currentTimeMillis());
+        NotificationItem item = null;
+        if ("order-update".equals(type)) {
+            item = new NotificationItem(R.drawable.ic_promo, title, message, System.currentTimeMillis(), type);
+        } else if ("promotion".equals(type)) {
+            item = new NotificationItem(R.drawable.ic_discount, title, message, System.currentTimeMillis(), type);
+        }
+        else{
+            item = new NotificationItem(R.drawable.ic_notification, title, message, System.currentTimeMillis(), type);
+        }
         NotificationUtil.saveNotification(getApplicationContext(), item);
 
         String channelId = "channel_id";
@@ -69,8 +68,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.ic_promo)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true); // Tự động xóa khi người dùng chạm
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 

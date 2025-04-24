@@ -38,7 +38,7 @@ public class NotificationFragment extends Fragment {
 
         // Lấy danh sách notification
         notificationItemList = NotificationUtil.getNotificationList(requireContext());
-        Collections.sort(notificationItemList, (a, b) -> Long.compare(b.getTimeStamp(), a.getTimeStamp()));
+        notificationItemList.sort((a, b) -> Long.compare(b.getTimeStamp(), a.getTimeStamp()));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         notificationAdapter = new NotificationAdapter(requireContext(), notificationItemList, item -> {
@@ -50,20 +50,22 @@ public class NotificationFragment extends Fragment {
                 notificationAdapter.notifyItemChanged(position);
             }
 
-            String body = item.getDescription();
-            int selectedTab = 0;
+            if (item.getType().equals("order-update")){
+                String body = item.getDescription();
+                int selectedTab = 0;
 
-            if (body.contains("đang giao")) {
-                selectedTab = 1;
-            } else if (body.contains("đã giao")) {
-                selectedTab = 2;
-            } else if (body.contains("hủy")) {
-                selectedTab = 3;
+                if (body.contains("đang giao")) {
+                    selectedTab = 1;
+                } else if (body.contains("đã giao")) {
+                    selectedTab = 2;
+                } else if (body.contains("hủy")) {
+                    selectedTab = 3;
+                }
+
+                Intent intent = new Intent(requireContext(), OrderStatusActivity.class);
+                intent.putExtra("selectedTab", selectedTab);
+                startActivity(intent);
             }
-
-            Intent intent = new Intent(requireContext(), OrderStatusActivity.class);
-            intent.putExtra("selectedTab", selectedTab);
-            startActivity(intent);
         });
 
         recyclerView.setAdapter(notificationAdapter);

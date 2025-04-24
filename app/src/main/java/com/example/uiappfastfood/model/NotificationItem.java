@@ -7,13 +7,15 @@ public class NotificationItem {
     private long timeStamp;
 
     private boolean isRead;
+    private String type;
 
-    public NotificationItem(int iconResId, String title, String description, long timeStamp) {
+    public NotificationItem(int iconResId, String title, String description, long timeStamp, String type) {
         this.iconResId = iconResId;
         this.title = title;
         this.description = description;
         this.timeStamp = timeStamp;
         this.isRead = false;
+        this.type = type;
     }
 
     public int getIconResId() {
@@ -54,5 +56,13 @@ public class NotificationItem {
 
     public void setRead(boolean read) {
         isRead = read;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
