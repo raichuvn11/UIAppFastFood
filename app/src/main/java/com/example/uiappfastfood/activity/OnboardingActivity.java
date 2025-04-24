@@ -1,13 +1,18 @@
 package com.example.uiappfastfood.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -15,7 +20,6 @@ import com.example.uiappfastfood.adapter.OnboardingAdapter;
 import com.example.uiappfastfood.model.OnboardingItem;
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.sharePreference.SharedPrefManager;
-import com.example.uiappfastfood.util.DeviceTokenUtil;
 import java.util.ArrayList;
 import java.util.List;
 import me.relex.circleindicator.CircleIndicator3;
@@ -82,6 +86,33 @@ public class OnboardingActivity extends AppCompatActivity {
 
         // Hiển thị ảnh nền đầu tiên
         imageView.setImageDrawable(ContextCompat.getDrawable(this, onboardingItems.get(0).getImageResId()));
+
+        checkNotificationPermission();
+    }
+
+    private void checkNotificationPermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                        1001); // 1001 là request code, bạn có thể tùy chọn
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1001) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Đã cho phép thông báo", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Không cho phép thông báo", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     // Thay đổi ảnh nền với hiệu ứng fade khi trang thay đổi

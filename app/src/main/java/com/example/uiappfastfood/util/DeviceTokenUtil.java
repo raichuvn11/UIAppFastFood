@@ -7,8 +7,8 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import com.example.uiappfastfood.service.ApiService;
-import com.example.uiappfastfood.config.RetrofitClient;
+import com.example.uiappfastfood.api.ApiService;
+import com.example.uiappfastfood.api.RetrofitClient;
 import com.example.uiappfastfood.model.DeviceTokenRequest;
 import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 public class DeviceTokenUtil {
@@ -28,7 +28,7 @@ public class DeviceTokenUtil {
     }
 
     public static void sendTokenToServer(Long userId, String token) {
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
         DeviceTokenRequest request = new DeviceTokenRequest(userId, token);
 

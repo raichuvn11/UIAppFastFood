@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,15 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.adapter.OrderAdapter;
-import com.example.uiappfastfood.adapter.OrderStatusAdapter;
-import com.example.uiappfastfood.config.RetrofitClient;
+import com.example.uiappfastfood.api.RetrofitClient;
 import com.example.uiappfastfood.model.Order;
 import com.example.uiappfastfood.model.OrderItem;
-import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.api.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -54,7 +50,7 @@ public class PaymentActivity extends AppCompatActivity {
         tvUserPhone = findViewById(R.id.tv_userPhone);
         btnCheckout = findViewById(R.id.btn_checkout);
 
-        apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
         // Nhận orderId từ Intent
         Long orderId = getIntent().getLongExtra("orderId", -1);

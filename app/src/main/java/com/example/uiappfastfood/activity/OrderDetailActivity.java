@@ -20,10 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.adapter.OrderAdapter;
-import com.example.uiappfastfood.config.RetrofitClient;
+import com.example.uiappfastfood.api.RetrofitClient;
 import com.example.uiappfastfood.model.Order;
 import com.example.uiappfastfood.model.OrderItem;
-import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.api.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +66,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         btnReview = findViewById(R.id.btn_reviewOrder);
         reviewLayout = findViewById(R.id.reviewLayout);
 
-        apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
         // Nhận orderId từ Intent
         Long orderId = getIntent().getLongExtra("orderId", -1);

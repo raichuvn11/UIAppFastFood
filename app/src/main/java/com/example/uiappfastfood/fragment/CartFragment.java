@@ -14,23 +14,20 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.adapter.CartAdapter;
-import com.example.uiappfastfood.config.RetrofitClient;
+import com.example.uiappfastfood.api.RetrofitClient;
 import com.example.uiappfastfood.model.CartItem;
 import com.example.uiappfastfood.model.Coupon;
 import com.example.uiappfastfood.model.Order;
 import com.example.uiappfastfood.model.OrderItem;
 import com.example.uiappfastfood.model.User;
-import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.api.ApiService;
 import com.example.uiappfastfood.sharePreference.SharedPrefManager;
-import com.example.uiappfastfood.util.NotificationUtil;
 import com.example.uiappfastfood.activity.LocationActivity;
 import com.example.uiappfastfood.activity.PaymentActivity;
 import androidx.fragment.app.Fragment;
@@ -61,7 +58,7 @@ public class CartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         SharedPrefManager sharedPrefManager = new SharedPrefManager(getContext());
         userId = sharedPrefManager.getUserId().intValue();
-        apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         initViews(view);
         loadCartItems();
 
