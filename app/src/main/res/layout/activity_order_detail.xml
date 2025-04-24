@@ -278,7 +278,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nhận xét của bạn..."
-                    android:background="@drawable/bg_edit_text"
+                    android:background="@drawable/edit_text_bg"
                     android:padding="8dp"
                     android:minLines="4"
                     android:gravity="top|start"

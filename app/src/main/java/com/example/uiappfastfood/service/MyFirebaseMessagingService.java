@@ -15,8 +15,11 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.uiappfastfood.R;
+import com.example.uiappfastfood.activity.LoginActivity;
+import com.example.uiappfastfood.activity.MainActivity;
 import com.example.uiappfastfood.fragment.NotificationFragment;
 import com.example.uiappfastfood.model.NotificationItem;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 import com.example.uiappfastfood.util.NotificationUtil;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -66,16 +69,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
         }
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        long userId = sharedPrefManager.getUserId();
 
-        // Intent để mở NotificationActivity
-        Intent intent = new Intent(this, NotificationFragment.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent intent;
+        if (userId != -1) {
+            intent = new Intent(this, MainActivity.class);
+        } else {
+            intent = new Intent(this, LoginActivity.class);
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this,
                 0,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
+
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.drawable.ic_promo)

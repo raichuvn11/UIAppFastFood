@@ -104,22 +104,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
+            <!-- Promo Icon -->
+            <ImageView
+                android:id="@+id/imgPromoIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_promo"
+                android:contentDescription="Promo Icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="12dp" />
+
+            <!-- Promo EditText -->
             <EditText
                 android:id="@+id/etPromoCode"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/bg_edit_text"
-                android:drawableStart="@drawable/ic_promo"
-                android:drawablePadding="8dp"
                 android:hint="Promo Code..."
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:textColor="#C2C2C2"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/imgPromoIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_applyCoupon" />
 
+            <!-- Apply Button -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_applyCoupon"
                 android:layout_width="wrap_content"
@@ -130,10 +145,11 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="@id/etPromoCode"
                 app:layout_constraintBottom_toBottomOf="@id/etPromoCode"
-                app:layout_constraintEnd_toEndOf="@id/etPromoCode"
-                app:layout_constraintTop_toTopOf="@id/etPromoCode" />
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <ScrollView
             android:layout_width="match_parent"
@@ -291,7 +307,7 @@
                     android:background="@drawable/bg_orange_button"
                     android:text="Order"
                     android:layout_marginHorizontal="100dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="40dp"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="20sp" />

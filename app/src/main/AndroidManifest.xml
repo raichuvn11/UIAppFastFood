@@ -67,9 +67,7 @@
             android:windowSoftInputMode="adjustResize">
 
         </activity>-->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
+        
         <!--<activity
             android:name=".activity.NotificationActivity"
             android:exported="true"/>-->
