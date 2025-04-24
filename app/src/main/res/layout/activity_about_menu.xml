@@ -41,7 +41,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="30dp"
-                    android:src="@drawable/ic_back_2"
+                    android:src="@drawable/ic_back_3"
                     android:background="?selectableItemBackgroundBorderless"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>

@@ -35,7 +35,8 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
 
     private Context context;
     private List<MenuItem> menuItemList;
-    private boolean showFavorite;  // Cờ điều kiện hiển thị hoặc ẩn icon yêu thích
+    private boolean showFavorite;
+
 
     // Constructor với tham số showFavorite
     public MenuItemAdapter(Context context, List<MenuItem> menuItemList, boolean showFavorite) {
@@ -94,14 +95,30 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
             }
 
             intent.putExtra("menu_item_favorite_ids", favoriteIdArray);
-            intent.putExtra("context_class_simple", context.getClass().getSimpleName());
+
+            // Kiểm tra giá trị của contextClassName và chỉ thay đổi nếu không phải là "MainActivity", "SearchActivity" hoặc "GuestActivity"
+            String contextClassName = context.getClass().getSimpleName();
+            SharedPrefManager sharedPrefManager = new SharedPrefManager(this.context);
+
+            if (contextClassName.equals("MainActivity") ||
+                    contextClassName.equals("SearchActivity") ||
+                    contextClassName.equals("GuestActivity")) {
+                sharedPrefManager.saveContext(contextClassName);
+                intent.putExtra("context_class_simple", contextClassName);
+            }
+            else
+            {
+                String ContextName = sharedPrefManager.getShareContext();
+                intent.putExtra("context_class_simple", ContextName);
+            }
+            Log.e("contextClassName", "contextClassName: " + sharedPrefManager.getShareContext());
             context.startActivity(intent);
             if (context instanceof Activity) {
                 ((Activity) context).finish();
             }
-
         });
     }
+
 
     @Override
     public int getItemCount() {

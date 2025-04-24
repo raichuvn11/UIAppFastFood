@@ -92,52 +92,45 @@ public class SearchActivity extends AppCompatActivity {
 
         fetchAllMenuItems();
 
-        fetchRecentOrders();
 
+        if (userId != -1) {
+            fetchRecentOrders();
+            getRecentSearches();
+            Log.e("userId", "userId: " + userId);
+        } else {
+            hideRecentSearchAndOrders();
+        }
 
-        getRecentSearches();
-
-
-
-        // Xóa tất cả tìm kiếm gần đây
-        tvDeleteAll.setOnClickListener(v -> {
-            clearAllRecentSearches();
-        });
+        tvDeleteAll.setOnClickListener(v -> clearAllRecentSearches());
 
         btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            if (userId != -1)
+            {
+                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else
+            {
+                Intent intent = new Intent(SearchActivity.this, GuestActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
         });
 
-        // Khởi tạo danh sách đơn hàng gần đây
-
-        // Cài đặt Adapter cho RecyclerView Recent Orders
-
-
-        // Cài đặt sự kiện cho nút bộ lọc
         btnFilter.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.LEFT));
-
-        //Category Spinner
         spinnerSetup();
-        //Tìm kiếm
         search();
-        //Filter
         applyFilters();
-
-
-
     }
 
-    //Xử lý tìm kiếm
-    private void anhXa(){
+    private void anhXa() {
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
         SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
         userId = sharedPrefManager.getUserId();
 
-        // Ánh xạ view
         etSearch = findViewById(R.id.etSearch);
         lvRecentSearch = findViewById(R.id.lvRecentSearch);
         tvDeleteAll = findViewById(R.id.tvDeleteAll);
@@ -152,24 +145,24 @@ public class SearchActivity extends AppCompatActivity {
         frameLayoutRecentOrders = findViewById(R.id.frameLayoutRecentOrders);
         btnBack = findViewById(R.id.btnBack);
 
-        // Cài đặt Adapter cho ListView Recent Search
-        recentList = new ArrayList<>();
-        recentAdapter = new RecentSearchAdapter(this, recentList, position -> deleteSearch(recentList.get(position).getKeyword()));
-        lvRecentSearch.setAdapter(recentAdapter);
+        // Nếu user chưa đăng nhập thì không cần thiết lập Recent Adapter và ẩn layout
+        if (userId != -1) {
+            recentList = new ArrayList<>();
+            recentAdapter = new RecentSearchAdapter(this, recentList, position -> deleteSearch(recentList.get(position).getKeyword()));
+            lvRecentSearch.setAdapter(recentAdapter);
 
-        //adapter recent order
-        recentOrders = new ArrayList<>();
-        orderAdapter = new RecentOrderAdapter(this, recentOrders);
-        lvRecentOrders.setLayoutManager(new LinearLayoutManager(this));
-        lvRecentOrders.setAdapter(orderAdapter);
+            recentOrders = new ArrayList<>();
+            orderAdapter = new RecentOrderAdapter(this, recentOrders);
+            lvRecentOrders.setLayoutManager(new LinearLayoutManager(this));
+            lvRecentOrders.setAdapter(orderAdapter);
 
-        // Xử lý khi người dùng chọn một từ khóa tìm kiếm
-        lvRecentSearch.setOnItemClickListener((parent, view, position, id) -> {
-            RecentSearch rs = recentList.get(position);
-            String keyword = rs.getKeyword();
-            etSearch.setText(keyword);
-            performSearch(keyword);
-        });
+            lvRecentSearch.setOnItemClickListener((parent, view, position, id) -> {
+                RecentSearch rs = recentList.get(position);
+                String keyword = rs.getKeyword();
+                etSearch.setText(keyword);
+                performSearch(keyword);
+            });
+        }
     }
     private void search() {
         btnClearSearch.setOnClickListener(v -> {
@@ -188,7 +181,10 @@ public class SearchActivity extends AppCompatActivity {
                     showRecentSearchAndOrders();
                     lvSearchResults.setVisibility(View.GONE);
                 } else {
-                    saveSearch(query);
+                    if (userId != -1)
+                    {
+                        saveSearch(query);
+                    }
                     performSearch(query);
                 }
                 return true;
@@ -266,15 +262,19 @@ public class SearchActivity extends AppCompatActivity {
 
     private void showRecentSearchAndOrders() {
         btnClearSearch.setVisibility(View.GONE);
-        recentSearchesHeader.setVisibility(View.VISIBLE);
-        tvheaderCategory.setVisibility(View.VISIBLE);
-        lvRecentSearch.setVisibility(View.VISIBLE);
-        frameLayoutRecentOrders.setVisibility(View.VISIBLE);
         lvSearchResults.setVisibility(View.GONE);
+        if (userId != -1) {
+            recentSearchesHeader.setVisibility(View.VISIBLE);
+            tvheaderCategory.setVisibility(View.VISIBLE);
+            lvRecentSearch.setVisibility(View.VISIBLE);
+            frameLayoutRecentOrders.setVisibility(View.VISIBLE);
+        }
     }
+
     private void hideRecentSearchAndOrders() {
         btnSearch.setVisibility(View.GONE);
         btnClearSearch.setVisibility(View.VISIBLE);
+        lvSearchResults.setVisibility(View.GONE);
         recentSearchesHeader.setVisibility(View.GONE);
         tvheaderCategory.setVisibility(View.GONE);
         lvRecentSearch.setVisibility(View.GONE);
