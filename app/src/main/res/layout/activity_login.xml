@@ -14,7 +14,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/inter_semibold"
         android:text="Login to your\naccount."
         android:textColor="@color/black"
@@ -141,7 +141,6 @@
         android:layout_height="60dp"
         android:text="Sign In"
         android:textAllCaps="false"
-
         android:textSize="16sp"
         android:fontFamily="@font/inter_semibold"
         android:textColor="@android:color/white"
@@ -214,13 +213,13 @@
         android:id="@+id/titleRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/inter_18pt_medium"
         android:text="Don’t have an account? "
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.344"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/socialLoginContainer" />
 
@@ -228,7 +227,7 @@
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/inter_semibold"
         android:text="Register"
         android:textColor="#FE8C00"
@@ -237,5 +236,34 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/titleRegister"
         app:layout_constraintTop_toBottomOf="@id/socialLoginContainer" />
+
+    <TextView
+        android:id="@+id/titleGuest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inter_18pt_medium"
+        android:text="You want go to menu without login? "
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.274"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleRegister" />
+
+    <TextView
+        android:id="@+id/tvMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Menu"
+        android:textColor="#FE8C00"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/titleGuest"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

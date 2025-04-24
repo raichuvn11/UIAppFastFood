@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button btnLogin;
 
-    private TextView tvForgotPassword, tvRegister;
+    private TextView tvForgotPassword, tvRegister, tvMenu;
 
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 100;
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        tvMenu = findViewById(R.id.tvMenu);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnSignIn);
@@ -63,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         tvRegister = findViewById(R.id.tvRegister);
 
+        tvMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, GuestActivity.class);
+            startActivity(intent);
+            finish();
+        });
         tvForgotPassword.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, ForgotActivity.class);
             startActivity(intent);

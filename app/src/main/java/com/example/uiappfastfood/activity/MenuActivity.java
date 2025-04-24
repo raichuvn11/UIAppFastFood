@@ -116,12 +116,19 @@ public class MenuActivity extends AppCompatActivity {
                 finish();
                 return;
             }
-            else
+            else if (contextName.equals("MainActivity"))
             {
                 Intent intent1 = new Intent(MenuActivity.this, MainActivity.class);
                 startActivity(intent1);
                 finish();
             }
+            else
+            {
+                Intent intent1 = new Intent(MenuActivity.this, GuestActivity.class);
+                startActivity(intent1);
+                finish();
+            }
+
 
         });
 

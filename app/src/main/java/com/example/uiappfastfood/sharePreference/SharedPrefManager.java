@@ -9,12 +9,24 @@ public class SharedPrefManager {
 
     private static final String KEY_TYPE = "type";
 
+    private static final String KEY_CONTEXT = "context";
+
+
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
     public SharedPrefManager(Context context) {
         sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+    }
+
+    public void saveContext(String context) {
+        editor.putString(KEY_CONTEXT,context);
+        editor.apply();
+    }
+
+    public String getShareContext() {
+        return sharedPreferences.getString(KEY_CONTEXT, "");
     }
 
     public void saveUserId(Long userId, String type) {
