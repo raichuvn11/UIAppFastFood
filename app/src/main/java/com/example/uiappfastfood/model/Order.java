@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Order implements Serializable {
     private Long userId;
+    private String userName;
+    private String userPhone;
     private String orderAddress;
     private String orderTime;
     private String orderStatus;
@@ -20,6 +22,22 @@ public class Order implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
     public String getOrderAddress() {

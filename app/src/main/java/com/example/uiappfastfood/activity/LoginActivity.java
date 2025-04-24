@@ -27,6 +27,7 @@ import com.example.uiappfastfood.api.ApiService;
 import com.example.uiappfastfood.api.RetrofitClient;
 import com.example.uiappfastfood.fragment.HomeFragment;
 import com.example.uiappfastfood.sharePreference.SharedPrefManager;
+import com.example.uiappfastfood.util.DeviceTokenUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -207,6 +208,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if ("success".equals(status)) {
                             Long id = loginResponse.getData().getUserId();
+                            DeviceTokenUtil.getDeviceToken(id); // đăng nhập thành công mới lưu token vào userID
                             saveIDToSharedPreferences(id,"normal");
                             navigateToHome();
                             Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();

@@ -24,6 +24,7 @@ import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.config.RetrofitClient;
 import com.example.uiappfastfood.model.User;
 import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,7 +49,6 @@ public class LocationActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private String fullAddress;
     private ApiService apiService;
-    private int userId = 1;
     private User user;
 
     @Override
@@ -61,8 +61,11 @@ public class LocationActivity extends AppCompatActivity {
         etQuan = findViewById(R.id.et_quan);
         etTinh = findViewById(R.id.et_tinh);
 
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        int userId = sharedPrefManager.getUserId().intValue();
+        System.out.println("userId: " + userId);
         apiService = RetrofitClient.getClient().create(ApiService.class);
-        getUserLocation();
+        getUserLocation(userId);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         findViewById(R.id.btn_currentLocation).setOnClickListener(view -> getCurrentLocation());
@@ -72,7 +75,7 @@ public class LocationActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_save).setOnClickListener(v -> {
-            updateUserProfile();
+            updateUserProfile(userId);
 
         });
     }
@@ -113,6 +116,7 @@ public class LocationActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void convertLocationToAddress(String fullAddress) {
+
         String[] addressParts = fullAddress.split(",");
 
         if (addressParts.length > 0) {
@@ -142,14 +146,16 @@ public class LocationActivity extends AppCompatActivity {
         }
     }
 
-    private void getUserLocation() {
+    private void getUserLocation(int userId) {
         apiService.getUserProfile(userId).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful() && response.body() != null){
                     user = response.body();
                     fullAddress = user.getAddress();
-                    convertLocationToAddress(fullAddress);
+                    if (fullAddress != null) {
+                        convertLocationToAddress(fullAddress);
+                    }
                 }
                 else{
                     Toast.makeText(LocationActivity.this, "Failed to load user profile", Toast.LENGTH_SHORT).show();
@@ -163,19 +169,20 @@ public class LocationActivity extends AppCompatActivity {
             }
         });
     }
+    private RequestBody toRequestBody(String value) {
+        return RequestBody.create(MediaType.parse("text/plain"), value != null ? value : "");
+    }
+    private void updateUserProfile(int userId) {
 
-    private void updateUserProfile() {
-        System.out.println("user: " + user);
-        Toast.makeText(LocationActivity.this, "User: " + user.getUsername(), Toast.LENGTH_SHORT).show();
         fullAddress = etStreet.getText().toString() + ", " + etPhuong.getText().toString() + ", " + etQuan.getText().toString() + ", " + etTinh.getText().toString();
         user.setAddress(fullAddress);
 
-        RequestBody idPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(userId));
-        RequestBody usernamePart = RequestBody.create(MediaType.parse("text/plain"), user.getUsername());
-        RequestBody emailPart = RequestBody.create(MediaType.parse("text/plain"), user.getEmail());
-        RequestBody phonePart = RequestBody.create(MediaType.parse("text/plain"), user.getPhone());
-        RequestBody addressPart = RequestBody.create(MediaType.parse("text/plain"), user.getAddress());
-        RequestBody imgPart = RequestBody.create(MediaType.parse("text/plain"), user.getImg());
+        RequestBody idPart = toRequestBody(String.valueOf(userId));
+        RequestBody usernamePart = toRequestBody(user.getUsername());
+        RequestBody emailPart = toRequestBody(user.getEmail());
+        RequestBody phonePart = toRequestBody(user.getPhone());
+        RequestBody addressPart = toRequestBody(user.getAddress());
+        RequestBody imgPart = toRequestBody(user.getImg());
         MultipartBody.Part file = null;
         apiService.updateUserProfile(idPart, usernamePart, emailPart, phonePart, addressPart, imgPart, file)
                 .enqueue(new Callback<Void>() {

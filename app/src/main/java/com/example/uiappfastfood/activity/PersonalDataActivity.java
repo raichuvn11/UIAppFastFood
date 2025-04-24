@@ -48,8 +48,8 @@ public class PersonalDataActivity extends AppCompatActivity {
     private AppCompatButton btnSave;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageUri;
-    private int userId;
     private User user;
+    private int userId;
     private boolean hasSelectedNewImage = false;
 
     @Override
@@ -72,7 +72,7 @@ public class PersonalDataActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btn_save);
 
         apiService = RetrofitClient.getClient().create(ApiService.class);
-        loadUserData();
+        loadUserData(userId);
 
         //back to previous activity
         findViewById(R.id.cvBack).setOnClickListener(v -> {
@@ -86,7 +86,7 @@ public class PersonalDataActivity extends AppCompatActivity {
 
         //save data
         btnSave.setOnClickListener(v -> {
-            updateUserProfile();
+            updateUserProfile(userId);
         });
 
         etAddress.setOnClickListener(v -> {
@@ -117,7 +117,7 @@ public class PersonalDataActivity extends AppCompatActivity {
         }
     }
 
-    private void loadUserData(){
+    private void loadUserData(int userId){
 
         apiService.getUserProfile(userId).enqueue(new Callback<User>() {
             @Override
@@ -132,7 +132,7 @@ public class PersonalDataActivity extends AppCompatActivity {
                     etPhone.setText(user.getPhone());
                     etAddress.setText(user.getAddress());
 
-                    if (!hasSelectedNewImage) {
+                    if (!hasSelectedNewImage && user.getImg() != null) {
                         Glide.with(PersonalDataActivity.this)
                                 .load("http://192.168.1.6:8080" + user.getImg())
                                 .placeholder(R.drawable.ic_launcher_foreground)
@@ -153,19 +153,23 @@ public class PersonalDataActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUserProfile() {
+    private RequestBody toRequestBody(String value) {
+        return RequestBody.create(MediaType.parse("text/plain"), value != null ? value : "");
+    }
+
+    private void updateUserProfile(int userId) {
         // Lấy dữ liệu từ các EditText
         user.setUsername(etUserName.getText().toString().trim());
         user.setEmail(etEmail.getText().toString().trim());
         user.setPhone(etPhone.getText().toString().trim());
         user.setAddress(etAddress.getText().toString().trim());
 
-        RequestBody idPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(userId));
-        RequestBody usernamePart = RequestBody.create(MediaType.parse("text/plain"), user.getUsername());
-        RequestBody emailPart = RequestBody.create(MediaType.parse("text/plain"), user.getEmail());
-        RequestBody phonePart = RequestBody.create(MediaType.parse("text/plain"), user.getPhone());
-        RequestBody addressPart = RequestBody.create(MediaType.parse("text/plain"), user.getAddress());
-        RequestBody imgPart = RequestBody.create(MediaType.parse("text/plain"), user.getImg());
+        RequestBody idPart = toRequestBody(String.valueOf(userId));
+        RequestBody usernamePart = toRequestBody(user.getUsername());
+        RequestBody emailPart = toRequestBody(user.getEmail());
+        RequestBody phonePart = toRequestBody(user.getPhone());
+        RequestBody addressPart = toRequestBody(user.getAddress());
+        RequestBody imgPart = toRequestBody(user.getImg());
 
         MultipartBody.Part file = null;
         if (imageUri != null) {
@@ -205,7 +209,7 @@ public class PersonalDataActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             Toast.makeText(PersonalDataActivity.this, "Cập nhật hồ sơ thành công", Toast.LENGTH_SHORT).show();
                             hasSelectedNewImage = false;
-                            loadUserData();
+                            loadUserData(userId);
                         } else {
                             Toast.makeText(PersonalDataActivity.this, "Cập nhật hồ sơ thất bại", Toast.LENGTH_SHORT).show();
                             Log.e("PersonalDataActivity", "Response error: " + response.code() + " - " + response.message());
@@ -223,6 +227,6 @@ public class PersonalDataActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadUserData();
+        loadUserData(userId);
     }
 }

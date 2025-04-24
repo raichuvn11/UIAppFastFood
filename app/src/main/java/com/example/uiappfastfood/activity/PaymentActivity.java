@@ -84,7 +84,7 @@ public class PaymentActivity extends AppCompatActivity {
                     orderAdapter = new OrderAdapter(PaymentActivity.this, orderItemList);
                     recyclerView.setAdapter(orderAdapter);
 
-                    getOrderPayment(order.getOrderTotal(), order.getOrderAddress());
+                    getOrderPayment(order.getOrderTotal(), order.getOrderAddress(), order.getUserName(), order.getUserPhone());
                 } else {
                     Toast.makeText(PaymentActivity.this, "Order not found", Toast.LENGTH_SHORT).show();
                 }
@@ -138,7 +138,7 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
-    private void getOrderPayment(double orderTotal, String orderAddress){
+    private void getOrderPayment(double orderTotal, String orderAddress, String userName, String userPhone){
         double totalPrice = 0;
         int totalItem = 0;
         for (OrderItem item : orderItemList) {
@@ -149,6 +149,8 @@ public class PaymentActivity extends AppCompatActivity {
         tvTotalPrice.setText(String.format("%,.0fđ", totalPrice));
         tvOrderAddress.setText(orderAddress);
         tvFinalTotalPrice.setText(String.format("%,.0fđ", orderTotal));
+        tvUserName.setText(userName);
+        tvUserPhone.setText(userPhone);
     }
 
 }
