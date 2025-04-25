@@ -129,7 +129,7 @@ public class PersonalDataActivity extends AppCompatActivity {
 
                     if (!hasSelectedNewImage && user.getImg() != null) {
                         Glide.with(PersonalDataActivity.this)
-                                .load("http://192.168.1.2:8080" + user.getImg())
+                                .load(RetrofitClient.BASE_URL + user.getImg())
                                 .placeholder(R.drawable.ic_launcher_foreground)
                                 .error(R.drawable.ic_launcher_foreground)
                                 .into(imgUser);
