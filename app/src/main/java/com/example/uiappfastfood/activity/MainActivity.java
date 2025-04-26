@@ -14,6 +14,8 @@ import com.example.uiappfastfood.fragment.CartFragment;
 import com.example.uiappfastfood.fragment.NotificationFragment;
 import com.example.uiappfastfood.fragment.ProfileSettingFragment;
 import com.example.uiappfastfood.R;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
+import com.example.uiappfastfood.util.DeviceTokenUtil;
 import com.example.uiappfastfood.util.NotificationUtil;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // lưu device token 
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        Long userId = sharedPrefManager.getUserId();
+        DeviceTokenUtil.getDeviceToken(userId);
         bottomNavigation = findViewById(R.id.bottomNavigation);
         updateNotificationBadge();
 

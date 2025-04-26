@@ -208,7 +208,6 @@ public class LoginActivity extends AppCompatActivity {
 
                         if ("success".equals(status)) {
                             Long id = loginResponse.getData().getUserId();
-                            DeviceTokenUtil.getDeviceToken(id); // đăng nhập thành công mới lưu token vào userID
                             saveIDToSharedPreferences(id,"normal");
                             navigateToHome();
                             Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
