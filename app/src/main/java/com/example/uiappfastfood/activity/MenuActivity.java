@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +38,7 @@ public class MenuActivity extends AppCompatActivity {
     private MenuItemAdapter menuItemAdapter;
     private ImageView favoriteIcon;
 
+
     private long userId;
     private MenuItem currentMenuItem;
 
@@ -60,8 +62,11 @@ public class MenuActivity extends AppCompatActivity {
         Button addToCartButton = findViewById(R.id.btn_add_to_cart);
         addToCartButton.setOnClickListener(v -> addToCart(currentMenuItem));
 
+
+
         SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
         userId = sharedPrefManager.getUserId();
+
 
 
 

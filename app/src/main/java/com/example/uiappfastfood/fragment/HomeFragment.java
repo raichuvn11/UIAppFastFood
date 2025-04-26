@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,6 +52,8 @@ public class HomeFragment extends Fragment {
 
     private ImageView searchIcon;
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,6 +64,22 @@ public class HomeFragment extends Fragment {
         foodRecyclerView = view.findViewById(R.id.food_recycler_view);
         cityName = view.findViewById(R.id.city_name);
         searchIcon = view.findViewById(R.id.search_icon);
+        NestedScrollView nestedScrollView = view.findViewById(R.id.homeFragment);
+        ImageView banner = view.findViewById(R.id.banner);
+        RelativeLayout relativeLayout = view.findViewById(R.id.relativeLayout);
+        TextView title = view.findViewById(R.id.title);
+
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                float fadeHeight = 600f;
+                float alpha = 1f - Math.min(1f, scrollY / fadeHeight);
+
+                banner.setAlpha(alpha);
+                relativeLayout.setAlpha(alpha);
+                title.setAlpha(alpha);
+            }
+        });
 
         searchIcon.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), SearchActivity.class);

@@ -59,9 +59,7 @@ public class SearchActivity extends AppCompatActivity {
     private TextView tvDeleteAll;
     private RecyclerView lvRecentOrders;
     private RecyclerView lvSearchResults; // RecyclerView for search results
-    private RecentSearchAdapter searchAdapter;
     private RecentOrderAdapter orderAdapter;
-    private List<String> recentKeywords;
     private List<MenuItem> recentOrders;
     private List<MenuItem> searchResults; // List to store search results
     private DrawerLayout drawerLayout;
