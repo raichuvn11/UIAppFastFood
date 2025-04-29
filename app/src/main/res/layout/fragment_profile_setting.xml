@@ -21,7 +21,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile Setting"
+            android:text="Cài đặt"
             android:textColor="#0F0F0F"
             android:textSize="18sp"
             android:textStyle="bold"

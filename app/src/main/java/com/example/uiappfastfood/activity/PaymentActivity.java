@@ -1,5 +1,6 @@
 package com.example.uiappfastfood.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -134,6 +135,7 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("DefaultLocale")
     private void getOrderPayment(double orderTotal, String orderAddress, String userName, String userPhone){
         double totalPrice = 0;
         int totalItem = 0;
@@ -141,7 +143,7 @@ public class PaymentActivity extends AppCompatActivity {
             totalItem += item.getQuantity();
             totalPrice += item.getPrice() * item.getQuantity();
         }
-        tvTotalItems.setText("Total Items (" + totalItem + ")");
+        tvTotalItems.setText("Danh sách - " + totalItem + " vật phẩm");
         tvTotalPrice.setText(String.format("%,.0fđ", totalPrice));
         tvOrderAddress.setText(orderAddress);
         tvFinalTotalPrice.setText(String.format("%,.0fđ", orderTotal));

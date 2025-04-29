@@ -49,7 +49,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="About This Menu"
+                    android:text="Về món ăn này"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:fontFamily="@font/inter_semibold"
@@ -157,7 +157,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Related Products"
+                    android:text="Món ăn liên quan"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:fontFamily="@font/inter_semibold"
@@ -187,7 +187,7 @@
             android:id="@+id/btn_add_to_cart"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Add to Cart"
+            android:text="Thêm vào giỏ hàng"
             android:textAllCaps="false"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/orange"

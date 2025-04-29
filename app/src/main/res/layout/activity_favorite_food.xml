@@ -65,7 +65,7 @@
             android:background="@drawable/bg_edit_text"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="8dp"
-            android:hint="Search..."
+            android:hint="Tìm..."
             android:layout_marginVertical="10dp"
             android:paddingHorizontal="15dp"
             android:textColor="#C2C2C2"

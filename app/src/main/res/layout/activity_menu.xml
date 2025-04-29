@@ -52,8 +52,8 @@
                 <!-- Title -->
                 <TextView
                     android:id="@+id/title"
-                    android:layout_width="362dp"
-                    android:layout_height="114dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="30dp"
                     android:fontFamily="@font/inter_semibold"
@@ -73,7 +73,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/inter_semibold"
             android:paddingStart="20dp"
-            android:text="Find by Category"
+            android:text="Tìm theo danh mục"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />

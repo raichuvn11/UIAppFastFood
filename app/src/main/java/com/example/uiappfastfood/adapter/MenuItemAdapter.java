@@ -58,7 +58,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
 
         // Gán dữ liệu vào các view
         holder.nameTextView.setText(menuItem.getName());
-        holder.priceTextView.setText("$ " + menuItem.getPrice());
+        holder.priceTextView.setText(String.format("%,.0fđ", menuItem.getPrice()));
 
         // Load ảnh sản phẩm bằng Glide
         Glide.with(context).load(menuItem.getImgMenuItem()).into(holder.productImageView);

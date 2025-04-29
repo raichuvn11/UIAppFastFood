@@ -39,7 +39,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Personal Data"
+            android:text="Thông tin cá nhân"
             android:textColor="#0F0F0F"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -133,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Full Name"
+                    android:text="Họ tên"
                     android:textColor="@color/secondary_text"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -164,7 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Phone"
+                    android:text="Điện thoại"
                     android:textColor="@color/secondary_text"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -226,7 +226,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Address"
+                    android:text="Địa chỉ"
                     android:textColor="@color/secondary_text"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -262,7 +262,7 @@
                     android:background="@drawable/bg_orange_button"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:text="Save"
+                    android:text="Lưu"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="20sp"/>

@@ -186,7 +186,7 @@ public class OrderDetailActivity extends AppCompatActivity {
             totalItem += item.getQuantity();
             totalPrice += item.getPrice() * item.getQuantity();
         }
-        tvTotalItems.setText("Total Items (" + totalItem + ")");
+        tvTotalItems.setText("Danh sách - " + totalItem + " vật phẩm");
         tvTotalPrice.setText(String.format("%,.0fđ", totalPrice));
         tvOrderAddress.setText(orderAddress);
         tvFinalTotalPrice.setText(String.format("%,.0fđ", orderTotal));

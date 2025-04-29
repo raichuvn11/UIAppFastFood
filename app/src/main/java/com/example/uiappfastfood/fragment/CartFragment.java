@@ -175,7 +175,7 @@ public class CartFragment extends Fragment {
         }
 
         double finalTotalPrice = totalPrice - discountAmount + Math.max(0, deliveryFee);
-        tvTotalItems.setText("Total Items (" + totalItems + ")");
+        tvTotalItems.setText("Tổng cộng (tạm tính) - " + totalItems + " vật phẩm");
         tvTotalPrice.setText(String.format("%,.0fđ", totalPrice));
         tvDeliveryFee.setText(String.format("%,.0fđ", deliveryFee));
         tvDiscount.setText(String.format("%,.0fđ", discountAmount));

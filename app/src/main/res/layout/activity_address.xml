@@ -38,7 +38,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address"
+            android:text="Địa chỉ"
             android:textColor="#0F0F0F"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -191,7 +191,7 @@
                     android:background="@drawable/bg_orange_button"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:text="Save"
+                    android:text="Lưu địa chỉ"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="20sp"/>

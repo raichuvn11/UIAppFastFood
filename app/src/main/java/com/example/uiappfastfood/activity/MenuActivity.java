@@ -99,7 +99,7 @@ public class MenuActivity extends AppCompatActivity {
         // Set data to views
         currentProductName = name; // Save the current product name
         productName.setText(name);
-        productPrice.setText("$" + price);
+        productPrice.setText(String.format("%,.0fđ", price));
         productDesc.setText(desc);
         Glide.with(this).load(imgUrl).into(productImage);
 
