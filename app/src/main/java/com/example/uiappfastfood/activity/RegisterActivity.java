@@ -3,6 +3,7 @@ package com.example.uiappfastfood.activity;
 import static java.security.AccessController.getContext;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -56,6 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
     private Dialog progressDialog;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +82,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();  // Ẩn loading
+            }
+
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -85,10 +93,11 @@ public class RegisterActivity extends AppCompatActivity {
                 sendIdTokenToServer(idToken);
             } catch (ApiException e) {
                 Log.e("GoogleLogin", "ApiException code: " + e.getStatusCode(), e);
-                Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
     private void saveTokenToSharedPreferences(Long id) {
         SharedPrefManager sharedPrefManager = new SharedPrefManager(RegisterActivity.this);
         sharedPrefManager.saveUserId(id,"google");
@@ -104,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
                     saveTokenToSharedPreferences(response.body().getData().getUserId());
                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -194,27 +203,32 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean validateInputs(String email, String username, String password, String confirmPassword) {
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError("Email is required");
+            etEmail.setError("Vui lòng nhập email");
             etEmail.requestFocus();
             return false;
         }
         if (TextUtils.isEmpty(username)) {
-            etUsername.setError("Username is required");
+            etUsername.setError("Vui lòng nhập tên");
             etUsername.requestFocus();
             return false;
         }
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Password is required");
+            etPassword.setError("Vui lòng nhập mật khẩu");
+            etPassword.requestFocus();
+            return false;
+        }
+        if (password.length() < 8) {
+            etPassword.setError("Mật khẩu phải có ít nhất 8 ký tự");
             etPassword.requestFocus();
             return false;
         }
         if (TextUtils.isEmpty(confirmPassword)) {
-            etConfirmPassword.setError("Confirm Password is required");
+            etConfirmPassword.setError("Vui lòng nhập xác nhận mật khẩu");
             etConfirmPassword.requestFocus();
             return false;
         }
         if (!password.equals(confirmPassword)) {
-            etConfirmPassword.setError("Passwords do not match");
+            etConfirmPassword.setError("Mật khẩu không khớp");
             etConfirmPassword.requestFocus();
             return false;
         }
@@ -237,14 +251,14 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 } else {
                     hideLoading();
-                    Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<GenericResponse> call, Throwable t) {
                 hideLoading();
-                Toast.makeText(RegisterActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Lỗi:" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -269,6 +283,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void setUpGoogleLogin() {
         ivGoogle.setOnClickListener(v -> {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN);
         });

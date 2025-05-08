@@ -127,7 +127,7 @@ public class OTPForgotActivity extends AppCompatActivity {
         if (otpCode.length() == 6) {
             verifyOTP(otpCode);
         } else {
-            Toast.makeText(OTPForgotActivity.this, "Please enter a valid OTP.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(OTPForgotActivity.this, "Vui lòng nhập đầy đủ mã OTP", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -148,13 +148,13 @@ public class OTPForgotActivity extends AppCompatActivity {
                         Toast.makeText(OTPForgotActivity.this, "Invalid OTP", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(OTPForgotActivity.this, "Failed to verify OTP. Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPForgotActivity.this, "Lỗi xác thực OTP. Vui lòng thử lại", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<GenericResponse> call, Throwable t) {
-                Toast.makeText(OTPForgotActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OTPForgotActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -184,18 +184,18 @@ public class OTPForgotActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     GenericResponse registerResponse = response.body();
                     if ("success".equals(registerResponse.getStatus())) {
-                        Toast.makeText(OTPForgotActivity.this, "OTP sent successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OTPForgotActivity.this, "Đã gửi OTP thành công!", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(OTPForgotActivity.this, registerResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(OTPForgotActivity.this, "Failed to send OTP", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPForgotActivity.this, "Gửi OTP thất bại. Vui lòng thử lại", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<GenericResponse> call, Throwable t) {
-                Toast.makeText(OTPForgotActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OTPForgotActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

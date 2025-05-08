@@ -171,14 +171,14 @@ public class LocationActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(LocationActivity.this, "Failed to load user profile", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LocationActivity.this, "Lỗi khi tải địa chỉ", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e("PersonalDataActivity", "API Error: " + t.getMessage());
-                Toast.makeText(LocationActivity.this, "Error loading profile", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LocationActivity.this, "Lỗi khi tải địa chỉ", Toast.LENGTH_SHORT).show();
             }
         });
     }

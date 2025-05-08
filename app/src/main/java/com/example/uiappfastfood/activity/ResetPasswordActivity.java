@@ -105,28 +105,28 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private boolean validateInputs(String newPassword, String confirmPassword) {
         // Check if new password is empty
         if (TextUtils.isEmpty(newPassword)) {
-            etNewPassword.setError("New password is required");
+            etNewPassword.setError("Vui lòng nhập mật khẩu mới");
             etNewPassword.requestFocus();
             return false;
         }
 
         // Check if confirm password is empty
         if (TextUtils.isEmpty(confirmPassword)) {
-            etConfirmPassword.setError("Confirm password is required");
+            etConfirmPassword.setError("Vui lòng nhập xác nhận mật khẩu mới");
             etConfirmPassword.requestFocus();
             return false;
         }
 
         // Check if passwords match
         if (!newPassword.equals(confirmPassword)) {
-            etConfirmPassword.setError("Passwords do not match");
+            etConfirmPassword.setError("Mật khẩu không khớp");
             etConfirmPassword.requestFocus();
             return false;
         }
 
         // Check if password length is valid
         if (newPassword.length() < 8) {
-            etNewPassword.setError("Password must be at least 8 characters");
+            etNewPassword.setError("Mật khẩu phải có ít nhất 8 ký tự");
             etNewPassword.requestFocus();
             return false;
         }
@@ -157,7 +157,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         Toast.makeText(ResetPasswordActivity.this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(ResetPasswordActivity.this, "Failed to reset password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResetPasswordActivity.this, "Lấy lai mật khẩu thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
 

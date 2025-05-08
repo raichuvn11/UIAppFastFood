@@ -58,7 +58,7 @@ public class PaymentActivity extends AppCompatActivity {
         if (orderId != -1) {
             loadOrderDetails(orderId);
         } else {
-            Toast.makeText(this, "Invalid order", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Dữ liệu đơn hàng không hợp lệ", Toast.LENGTH_SHORT).show();
         }
         // Quay lại CartActivity
         findViewById(R.id.cvBack).setOnClickListener(v -> {
@@ -83,14 +83,14 @@ public class PaymentActivity extends AppCompatActivity {
 
                     getOrderPayment(order.getOrderTotal(), order.getOrderAddress(), order.getUserName(), order.getUserPhone());
                 } else {
-                    Toast.makeText(PaymentActivity.this, "Order not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PaymentActivity.this, "Không tìm thấy đơn hàng", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
 
-                Toast.makeText(PaymentActivity.this, "Error loading order", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PaymentActivity.this, "Tải đơn hàng thất bại", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -58,7 +58,7 @@
                     android:layout_marginBottom="30dp"
                     android:fontFamily="@font/inter_semibold"
                     android:paddingHorizontal="20dp"
-                    android:text="Provide the best food for you"
+                    android:text="Các món ngon đang chờ bạn"
                     android:textColor="@color/white"
                     android:textSize="43sp"
                     android:textStyle="bold" />

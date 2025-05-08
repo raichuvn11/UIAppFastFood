@@ -120,7 +120,7 @@ public class GuestActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Category>> call, Throwable t) {
-                Toast.makeText(GuestActivity.this, "Failed to load categories", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GuestActivity.this, "Lỗi khi tải danh mục", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -122,7 +122,7 @@ public class OTPRegisterActivity extends AppCompatActivity {
 
         // Check if all OTP fields are filled
         if (TextUtils.isEmpty(otpCode) || otpCode.length() < 6) {
-            Toast.makeText(this, "Please enter the complete OTP", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng nhập đầy đủ mã OTP", Toast.LENGTH_SHORT).show();
         } else {
             // Call the API to validate OTP
             validateOTPWithServer(otpCode);
@@ -142,13 +142,13 @@ public class OTPRegisterActivity extends AppCompatActivity {
                         Toast.makeText(OTPRegisterActivity.this, verifyOtpResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(OTPRegisterActivity.this, "OTP verification failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPRegisterActivity.this, "Xác thực OTP thất bại. Vui lòng thử lại", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<GenericResponse> call, Throwable t) {
-                Toast.makeText(OTPRegisterActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OTPRegisterActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -197,7 +197,7 @@ public class OTPRegisterActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     GenericResponse registerResponse = response.body();
                     if ("success".equals(registerResponse.getStatus())) {
-                        Toast.makeText(OTPRegisterActivity.this, "OTP resent successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OTPRegisterActivity.this, "Đã gửi OTP thành công!", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(OTPRegisterActivity.this, registerResponse.getMessage(), Toast.LENGTH_SHORT).show();
@@ -207,7 +207,7 @@ public class OTPRegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GenericResponse> call, Throwable t) {
-                Toast.makeText(OTPRegisterActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OTPRegisterActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

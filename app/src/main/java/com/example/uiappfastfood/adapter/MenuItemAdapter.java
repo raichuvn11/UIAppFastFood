@@ -138,7 +138,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
 
         if (userId == -1) {
             // Nếu chưa đăng nhập, yêu cầu người dùng đăng nhập
-            Toast.makeText(context, "Please log in to add to favorites", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Vui lòng đăng nhập để thực hiện thao tác này", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -163,13 +163,13 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
                     // Cập nhật UI sau khi thêm sản phẩm vào danh sách yêu thích
                     menuItem.getUserFavoriteIds().add(userId);
                     updateFavoriteIcon(holder, menuItem, userId);  // Cập nhật lại icon yêu thích
-                    Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Đã yêu thích", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, "Failed to add favorite", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Thao tác thất bại", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -183,13 +183,13 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
                     // Cập nhật UI sau khi xóa sản phẩm khỏi danh sách yêu thích
                     menuItem.getUserFavoriteIds().remove(userId);
                     updateFavoriteIcon(holder, menuItem, userId);  // Cập nhật lại icon yêu thích
-                    Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Bỏ yêu thích", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, "Failed to remove favorite", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Thao tác thất bại", Toast.LENGTH_SHORT).show();
             }
         });
     }

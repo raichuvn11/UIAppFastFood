@@ -136,14 +136,14 @@ public class PersonalDataActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(PersonalDataActivity.this, "Failed to load user profile", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PersonalDataActivity.this, "Lỗi khi tải hồ sơ", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e("PersonalDataActivity", "API Error: " + t.getMessage());
-                Toast.makeText(PersonalDataActivity.this, "Error loading profile", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PersonalDataActivity.this, "Lỗi khi tải hồ sơ", Toast.LENGTH_SHORT).show();
             }
         });
     }

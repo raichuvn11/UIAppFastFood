@@ -73,7 +73,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         if (orderId != -1) {
             loadOrderDetails(orderId);
         } else {
-            Toast.makeText(this, "Invalid order", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Dữ liệu đơn hàng không hợp lệ", Toast.LENGTH_SHORT).show();
         }
         // Quay lại CartActivity
         findViewById(R.id.cvBack).setOnClickListener(v -> {
