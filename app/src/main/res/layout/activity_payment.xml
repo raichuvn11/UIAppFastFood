@@ -84,16 +84,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chi tiết giao dịch"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:text="Chi tiết giao dịch"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -104,17 +104,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Tổng cộng (tạm tính)"
                     android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:layout_weight="1"/>
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/tv_totalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$1000"
-                    android:textStyle="bold"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -126,27 +127,28 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Giá trị đơn hàng"
                     android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:layout_weight="1"/>
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/tv_finalTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$960"
                     android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thông tin giao hàng"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:text="Thông tin giao hàng"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -157,17 +159,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Khách hàng"
                     android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:layout_weight="1"/>
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/tv_userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ha Duc Phat"
-                    android:textStyle="bold"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,17 +182,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Điện thoại"
                     android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:layout_weight="1"/>
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/tv_userPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0000-111-222"
-                    android:textStyle="bold"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -201,21 +205,54 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Địa chỉ"
                     android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:layout_weight="1"/>
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/tv_orderAddress"
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:text="Quang Trung, Thanh Xuan, Ha Noi"
+                    android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="2"
-                    android:ellipsize="end"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
+                    android:text="Quang Trung, Thanh Xuan, Ha Noi"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Phương thức thanh toán"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/rg_paymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rb_cod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Thanh toán khi nhận hàng"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thanh toán qua VNPay"
+                    android:textSize="14sp" />
+            </RadioGroup>
 
         </LinearLayout>
 

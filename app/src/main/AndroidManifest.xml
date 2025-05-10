@@ -75,7 +75,19 @@
             android:exported="true"/>-->
         <activity
             android:name=".activity.PaymentActivity"
-            android:exported="true"/>
+            android:launchMode="singleTop"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="fastfood"
+                    android:host="payment"
+                    android:pathPrefix="/result" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".activity.PersonalDataActivity"
             android:exported="true"

@@ -11,10 +11,12 @@ import com.example.uiappfastfood.DTO.request.RecentSearchRequest;
 import com.example.uiappfastfood.DTO.request.RegisterRequest;
 import com.example.uiappfastfood.DTO.request.ResetPasswordRequest;
 import com.example.uiappfastfood.DTO.request.VerifyOtpRequest;
+import com.example.uiappfastfood.DTO.request.VnpayRequest;
 import com.example.uiappfastfood.DTO.response.AutoCompleteResponse;
 import com.example.uiappfastfood.DTO.response.GenericResponse;
 import com.example.uiappfastfood.DTO.response.LoginResponse;
 import com.example.uiappfastfood.DTO.response.UserResponseDTO;
+import com.example.uiappfastfood.DTO.response.VnpayResponse;
 import com.example.uiappfastfood.model.CartItem;
 import com.example.uiappfastfood.model.Category;
 import com.example.uiappfastfood.model.Coupon;
@@ -157,4 +159,7 @@ public interface ApiService {
 
     @DELETE("api/cart/delete-item")
     Call<Boolean> deleteCartItem(@Query("userId") Long userId, @Query("itemId") Long itemId);
+
+    @POST("api/payment/create")
+    Call<VnpayResponse> createVnPayUrl(@Body VnpayRequest request);
 }
