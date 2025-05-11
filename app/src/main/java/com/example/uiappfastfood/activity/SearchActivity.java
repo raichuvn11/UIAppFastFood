@@ -354,7 +354,7 @@ public class SearchActivity extends AppCompatActivity {
     //Xử lý Spinner
     private void spinnerSetup() {
         Spinner spinnerCategory = findViewById(R.id.spinnerCategory);
-        List<Category> categoryList = new ArrayList<>();
+        categoryList = new ArrayList<>();
         List<String> categoryTypes = new ArrayList<>();
 
         // Thêm mục "Tất cả" vào đầu danh sách
