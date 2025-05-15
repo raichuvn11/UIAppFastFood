@@ -134,10 +134,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         String address = getIntent().getStringExtra("address");
 
-        if (address.equals("null") || address.isEmpty()) {
-            getCurrentLocation();
-        } else {
+
+
+        // Nếu có địa chỉ thì hiển thị marker và camera đến đó
+        if (!address.equals("null") && !address.isEmpty()) {
+            Log.e("MapsActivity", "Address: " + address);
             getCoordinatesFromAddress(address);
+        }
+        else {
+            // Luôn lấy vị trí hiện tại
+            getCurrentLocation();
         }
 
         // Di chuyển marker khi di chuyển bản đồ
@@ -196,6 +202,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             }
 
                             getAddressFromLatLng(userLatLng);
+                            mMap.setMyLocationEnabled(true);
+                        }
+                    });
+        }
+    }
+    private void showCurrentLocation(){
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, location -> {
+                        if (location != null) {
                             mMap.setMyLocationEnabled(true);
                         }
                     });
@@ -270,6 +291,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void getCoordinatesFromAddress(String address) {
+        showCurrentLocation();
         try {
             List<Address> addressList = geocoder.getFromLocationName(address, 1); // Tìm 1 kết quả
             if (addressList != null && !addressList.isEmpty()) {
@@ -292,6 +314,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Toast.makeText(MapsActivity.this, "Lỗi khi tìm kiếm địa chỉ", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
