@@ -425,7 +425,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void clearAllRecentSearches() {
+        Log.e("userId", "userId: " + userId + " clearAllRecentSearches");
         apiService.clearAllSearches(new RecentSearchRequest(userId)).enqueue(new Callback<Void>() {
+
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 recentList.clear();
