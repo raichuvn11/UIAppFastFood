@@ -20,10 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.adapter.OrderAdapter;
-import com.example.uiappfastfood.config.RetrofitClient;
+import com.example.uiappfastfood.api.RetrofitClient;
 import com.example.uiappfastfood.model.Order;
 import com.example.uiappfastfood.model.OrderItem;
-import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.api.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,14 +66,14 @@ public class OrderDetailActivity extends AppCompatActivity {
         btnReview = findViewById(R.id.btn_reviewOrder);
         reviewLayout = findViewById(R.id.reviewLayout);
 
-        apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
         // Nhận orderId từ Intent
         Long orderId = getIntent().getLongExtra("orderId", -1);
         if (orderId != -1) {
             loadOrderDetails(orderId);
         } else {
-            Toast.makeText(this, "Invalid order", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Dữ liệu đơn hàng không hợp lệ", Toast.LENGTH_SHORT).show();
         }
         // Quay lại CartActivity
         findViewById(R.id.cvBack).setOnClickListener(v -> {
@@ -186,7 +186,7 @@ public class OrderDetailActivity extends AppCompatActivity {
             totalItem += item.getQuantity();
             totalPrice += item.getPrice() * item.getQuantity();
         }
-        tvTotalItems.setText("Total Items (" + totalItem + ")");
+        tvTotalItems.setText("Danh sách - " + totalItem + " vật phẩm");
         tvTotalPrice.setText(String.format("%,.0fđ", totalPrice));
         tvOrderAddress.setText(orderAddress);
         tvFinalTotalPrice.setText(String.format("%,.0fđ", orderTotal));

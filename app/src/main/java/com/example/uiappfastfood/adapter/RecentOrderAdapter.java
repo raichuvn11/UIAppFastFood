@@ -19,6 +19,7 @@ import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.activity.MenuActivity;
 import com.example.uiappfastfood.model.MenuItem;
 import com.example.uiappfastfood.model.RecentOrderModel;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderAdapter.
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         MenuItem order = orderList.get(position);
         holder.tvFoodName.setText(order.getName());
-        String price = String.format("$%.2f", order.getPrice());
+        String price = String.format(String.format("%,.0fđ", order.getPrice()));
         holder.tvPrice.setText(price);
 
         Glide.with(context)
@@ -67,6 +68,8 @@ public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderAdapter.
             intent.putExtra("menu_item_favorite_ids", favoriteIdArray);
             intent.putExtra("context_class_simple", context.getClass().getSimpleName());
             context.startActivity(intent);
+            SharedPrefManager sharedPrefManager = new SharedPrefManager(context);
+            sharedPrefManager.saveContext(context.getClass().getSimpleName());
             if (context instanceof Activity) {
                 ((Activity) context).finish();
             }

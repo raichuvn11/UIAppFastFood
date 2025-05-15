@@ -38,7 +38,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address"
+            android:text="Địa chỉ"
             android:textColor="#0F0F0F"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -78,12 +78,14 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:id="@+id/et_street"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="10dp"
                     android:padding="10dp"
-                    android:background="@drawable/bg_edit_text"
+                    android:background="@drawable/edit_text_bg"
                     android:text="200 Lê Văn Việt"
                     android:textColor="@color/black"
                     android:textSize="16sp"/>
@@ -105,12 +107,14 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:id="@+id/et_phuong"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="10dp"
                     android:padding="10dp"
-                    android:background="@drawable/bg_edit_text"
+                    android:background="@drawable/edit_text_bg"
                     android:text="Tăng Nhơn Phú B"
                     android:textColor="@color/black"
                     android:textSize="16sp"/>
@@ -132,12 +136,14 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:id="@+id/et_quan"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="10dp"
                     android:padding="10dp"
-                    android:background="@drawable/bg_edit_text"
+                    android:background="@drawable/edit_text_bg"
                     android:text="Thủ Đức"
                     android:textColor="@color/black"
                     android:textSize="16sp"/>
@@ -159,12 +165,14 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:id="@+id/et_tinh"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="10dp"
                     android:padding="10dp"
-                    android:background="@drawable/bg_edit_text"
+                    android:background="@drawable/edit_text_bg"
                     android:text="Hồ Chí Minh"
                     android:textColor="@color/black"
                     android:textSize="16sp"/>
@@ -183,7 +191,7 @@
                     android:background="@drawable/bg_orange_button"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:text="Save"
+                    android:text="Lưu địa chỉ"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="20sp"/>

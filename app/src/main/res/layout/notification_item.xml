@@ -44,11 +44,10 @@
                 android:id="@+id/tv_notificationTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:text="Special Discount"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_margin="5dp"/>
 
@@ -66,7 +65,6 @@
             android:id="@+id/tv_notificationDescription"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="12dp"
             android:layout_weight="1"
             android:text="special discount description"
             android:textColor="@color/secondary_text"

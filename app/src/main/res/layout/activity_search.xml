@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Search Food"
+                    android:text="Tìm món ăn"
                     android:fontFamily="@font/inter_semibold"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:imeOptions="actionSearch"
-                    android:hint="Search Food"
+                    android:hint="Tìm món ăn"
                     android:fontFamily="@font/inter_18pt_medium"
                     android:background="@null"
                     android:paddingStart="8dp"
@@ -113,7 +113,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Recent searches"
+                    android:text="Tìm kiếm gần đây"
                     android:fontFamily="@font/inter_semibold"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -123,7 +123,7 @@
                     android:id="@+id/tvDeleteAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delete"
+                    android:text="Xóa"
                     android:fontFamily="@font/inter_semibold"
                     android:textColor="@android:color/holo_orange_dark" />
             </LinearLayout>
@@ -148,7 +148,7 @@
                 android:id="@+id/tvheaderCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="My recent orders"
+                android:text="Đơn hàng gần đây"
                 android:fontFamily="@font/inter_semibold"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -213,7 +213,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filter"
+                    android:text="Lọc"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:paddingBottom="16dp"/>
@@ -223,7 +223,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Category"
+                    android:text="Danh mục"
                     android:layout_marginTop="16dp"
                     android:textStyle="bold" />
 
@@ -236,7 +236,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sort by Price"
+                    android:text="Sắp xếp theo giá"
                     android:layout_marginTop="16dp"
                     android:textStyle="bold" />
 
@@ -250,20 +250,20 @@
                         android:id="@+id/rbPriceAsc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price: Low to High" />
+                        android:text="Giá tăng dần" />
 
                     <RadioButton
                         android:id="@+id/rbPriceDesc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price: High to Low" />
+                        android:text="Giá giảm dần" />
                 </RadioGroup>
 
                 <!-- Lọc theo độ yêu thích -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sort by Popularity"
+                    android:text="Sắp xếp theo yêu thích"
                     android:layout_marginTop="16dp"
                     android:textStyle="bold" />
 
@@ -277,13 +277,13 @@
                         android:id="@+id/rbFavAsc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Popularity: Low to High" />
+                        android:text="Từ Thấp đến Cao" />
 
                     <RadioButton
                         android:id="@+id/rbFavDesc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Popularity: High to Low" />
+                        android:text="Từ Cao đến Thấp" />
                 </RadioGroup>
 
                 <!-- Apply button -->
@@ -294,7 +294,7 @@
                     android:fontFamily="@font/inter_semibold"
                     android:textAllCaps="false"
                     android:background="@drawable/custom_button"
-                    android:text="Apply Filter"
+                    android:text="Áp dụng"
                     android:textColor="@color/white"
                     android:layout_marginTop="24dp"/>
             </LinearLayout>

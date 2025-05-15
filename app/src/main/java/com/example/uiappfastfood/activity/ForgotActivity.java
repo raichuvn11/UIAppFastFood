@@ -38,7 +38,7 @@ public class ForgotActivity extends AppCompatActivity {
             String email = etEmail.getText().toString().trim();
 
             if (email.isEmpty()) {
-                Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Vui lòng nhập email của bạn", Toast.LENGTH_SHORT).show();
             } else {
                 // Truyền email xuống BottomSheet
                 ForgotPasswordBottomSheet bottomSheet = ForgotPasswordBottomSheet.newInstance(email);

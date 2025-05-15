@@ -96,4 +96,29 @@ public class NotificationUtil {
         prefs.edit().remove(getNotificationKey(userId)).apply();
     }
 
+    public static void removeReadNotifications(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(context);
+        long userId = sharedPrefManager.getUserId();
+
+        String json = prefs.getString(getNotificationKey(userId), null);
+        if (json == null) return;
+
+        Type type = new TypeToken<ArrayList<NotificationItem>>() {}.getType();
+        List<NotificationItem> list = new Gson().fromJson(json, type);
+        if (list == null) return;
+
+        // Giữ lại những thông báo chưa đọc
+        List<NotificationItem> filtered = new ArrayList<>();
+        for (NotificationItem item : list) {
+            if (!item.isRead()) {
+                filtered.add(item);
+            }
+        }
+        // Ghi đè lại danh sách đã lọc
+        String updatedJson = new Gson().toJson(filtered);
+        prefs.edit().putString(getNotificationKey(userId), updatedJson).apply();
+    }
+
+
 }

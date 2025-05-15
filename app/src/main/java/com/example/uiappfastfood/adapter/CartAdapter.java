@@ -18,8 +18,9 @@ import com.bumptech.glide.Glide;
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.model.CartItem;
 import java.util.List;
-import com.example.uiappfastfood.config.RetrofitClient;
-import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.api.RetrofitClient;
+import com.example.uiappfastfood.api.ApiService;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -102,8 +103,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             System.out.println("Clicked ");
             //api delete cart item//
-            ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-            Long userId = 1L;
+            ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+            SharedPrefManager sharedPrefManager = new SharedPrefManager(context);
+            Long userId = sharedPrefManager.getUserId();
             Long itemId = cartItem.getItemId();
             apiService.deleteCartItem(userId, itemId).enqueue(new Callback<Boolean>(){
                 @Override

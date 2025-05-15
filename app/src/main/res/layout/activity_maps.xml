@@ -51,7 +51,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/orange"
             android:fontFamily="@font/inter_semibold"
-            android:text="Confirm"
+            android:text="Xác nhận"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18sp"

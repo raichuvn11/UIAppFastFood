@@ -3,10 +3,9 @@ package com.example.uiappfastfood;
 import android.app.Application;
 import android.util.Log;
 
-import com.example.uiappfastfood.config.RetrofitClient;
+import com.example.uiappfastfood.api.RetrofitClient;
 import com.example.uiappfastfood.model.DeviceTokenRequest;
-import com.example.uiappfastfood.service.ApiService;
-import com.google.firebase.FirebaseApp;
+import com.example.uiappfastfood.api.ApiService;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import retrofit2.Call;
@@ -35,7 +34,7 @@ public class MyApplication extends Application {
     }
 
     public void sendTokenToServer(String token) {
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
         // lấy tạm user id
         Long userId = 1L;

@@ -14,16 +14,27 @@ import com.example.uiappfastfood.fragment.CartFragment;
 import com.example.uiappfastfood.fragment.NotificationFragment;
 import com.example.uiappfastfood.fragment.ProfileSettingFragment;
 import com.example.uiappfastfood.R;
+import com.example.uiappfastfood.sharePreference.SharedPrefManager;
+import com.example.uiappfastfood.util.DeviceTokenUtil;
+import com.example.uiappfastfood.util.NotificationUtil;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+        // lưu device token 
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        Long userId = sharedPrefManager.getUserId();
+        DeviceTokenUtil.getDeviceToken(userId);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
+        updateNotificationBadge();
 
         // Mặc định hiển thị HomeFragment
         if (savedInstanceState == null) {
@@ -57,5 +68,24 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void updateNotificationBadge() {
+        int unreadCount = NotificationUtil.getNewNotification(this);
+        BadgeDrawable badge = bottomNavigation.getOrCreateBadge(R.id.nav_notification);
+
+        if (unreadCount > 0) {
+            badge.setVisible(true);
+            badge.setNumber(unreadCount);
+        } else {
+            badge.clearNumber();
+            badge.setVisible(false);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateNotificationBadge();
     }
 }

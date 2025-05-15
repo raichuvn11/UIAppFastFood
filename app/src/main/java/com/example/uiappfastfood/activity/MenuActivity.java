@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +38,7 @@ public class MenuActivity extends AppCompatActivity {
     private MenuItemAdapter menuItemAdapter;
     private ImageView favoriteIcon;
 
+
     private long userId;
     private MenuItem currentMenuItem;
 
@@ -60,8 +62,11 @@ public class MenuActivity extends AppCompatActivity {
         Button addToCartButton = findViewById(R.id.btn_add_to_cart);
         addToCartButton.setOnClickListener(v -> addToCart(currentMenuItem));
 
+
+
         SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
         userId = sharedPrefManager.getUserId();
+
 
 
 
@@ -94,7 +99,7 @@ public class MenuActivity extends AppCompatActivity {
         // Set data to views
         currentProductName = name; // Save the current product name
         productName.setText(name);
-        productPrice.setText("$" + price);
+        productPrice.setText(String.format("%,.0fđ", price));
         productDesc.setText(desc);
         Glide.with(this).load(imgUrl).into(productImage);
 
@@ -144,7 +149,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void addToCart(MenuItem menuItem) {
         if (userId == -1) {
-            Toast.makeText(this, "Please log in to add to cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng đăng nhập để thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -167,20 +172,20 @@ public class MenuActivity extends AppCompatActivity {
                     // Show toast based on response
                     Toast.makeText(MenuActivity.this, message, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MenuActivity.this, "Failed to add item to cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MenuActivity.this, "Thêm vào giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, Object>> call, Throwable t) {
-                Toast.makeText(MenuActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void toggleFavorite(MenuItem menuItem) {
         if (userId == -1) {
-            Toast.makeText(this, "Please log in to add to favorites", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng đăng nhập để thêm vào yêu thích", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -193,13 +198,13 @@ public class MenuActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         menuItem.getUserFavoriteIds().remove(userId);
                         updateFavoriteIcon(menuItem);
-                        Toast.makeText(MenuActivity.this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuActivity.this, "Đã bỏ yêu thích", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(MenuActivity.this, "Failed to remove favorite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MenuActivity.this, "Thao tác thất bại", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
@@ -209,13 +214,13 @@ public class MenuActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         menuItem.getUserFavoriteIds().add(userId);
                         updateFavoriteIcon(menuItem);
-                        Toast.makeText(MenuActivity.this, "Added to favorites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuActivity.this, "Đã yêu thích", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(MenuActivity.this, "Failed to add favorite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MenuActivity.this, "Thao tác thất bại", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -239,17 +244,17 @@ public class MenuActivity extends AppCompatActivity {
                         // Update the adapter with the filtered list
                         menuItemAdapter.updateMenuItems(relatedProducts);
                     } else {
-                        Toast.makeText(MenuActivity.this, "No related products found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuActivity.this, "Không có sản phẩm liên quan", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Log.e("MenuActivity", "Failed to load menu items: " + response.message());
-                    Toast.makeText(MenuActivity.this, "Failed to load menu items", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MenuActivity.this, "Lỗi tải sản phẩm liên quan", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<MenuItem>> call, Throwable t) {
-                Toast.makeText(MenuActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

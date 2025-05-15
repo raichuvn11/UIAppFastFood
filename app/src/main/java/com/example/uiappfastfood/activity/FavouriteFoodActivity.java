@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.uiappfastfood.R;
 import com.example.uiappfastfood.adapter.FavoriteItemAdapter;
-import com.example.uiappfastfood.config.RetrofitClient;
+import com.example.uiappfastfood.api.RetrofitClient;
 import com.example.uiappfastfood.model.FavoriteItem;
-import com.example.uiappfastfood.service.ApiService;
+import com.example.uiappfastfood.api.ApiService;
 import com.example.uiappfastfood.sharePreference.SharedPrefManager;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class FavouriteFoodActivity extends AppCompatActivity {
     }
 
     private void getFavoriteItems() {
-        apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         apiService.getFavoriteItems(userId).enqueue(new Callback<List<FavoriteItem>>() {
             @Override
             public void onResponse(Call<List<FavoriteItem>> call, Response<List<FavoriteItem>> response) {

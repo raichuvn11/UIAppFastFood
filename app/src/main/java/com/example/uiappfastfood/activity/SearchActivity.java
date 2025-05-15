@@ -59,9 +59,7 @@ public class SearchActivity extends AppCompatActivity {
     private TextView tvDeleteAll;
     private RecyclerView lvRecentOrders;
     private RecyclerView lvSearchResults; // RecyclerView for search results
-    private RecentSearchAdapter searchAdapter;
     private RecentOrderAdapter orderAdapter;
-    private List<String> recentKeywords;
     private List<MenuItem> recentOrders;
     private List<MenuItem> searchResults; // List to store search results
     private DrawerLayout drawerLayout;
@@ -356,7 +354,7 @@ public class SearchActivity extends AppCompatActivity {
     //Xử lý Spinner
     private void spinnerSetup() {
         Spinner spinnerCategory = findViewById(R.id.spinnerCategory);
-        List<Category> categoryList = new ArrayList<>();
+        categoryList = new ArrayList<>();
         List<String> categoryTypes = new ArrayList<>();
 
         // Thêm mục "Tất cả" vào đầu danh sách

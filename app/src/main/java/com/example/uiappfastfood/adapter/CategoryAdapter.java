@@ -73,11 +73,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         Category category = categoryList.get(position);
         holder.categoryName.setText(category.getType());
 
-        Glide.with(context)
-                .load(category.getImgCategory())
-                .placeholder(R.drawable.test_image)
-                .error(R.drawable.test_image)
-                .into(holder.categoryImage);
+        Glide.with(context).load(category.getImgCategory()).into(holder.categoryImage);
 
         boolean isSelected = position == selectedPosition;
 
