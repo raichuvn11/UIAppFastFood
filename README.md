@@ -6,7 +6,15 @@
 
 ## Tính Năng Chính
 
+### Giao diện khởi động
+
+![Giao diện ứng dụng](images/welcome.jpg)
+
 ### 1. Xác Thực Người Dùng
+
+![Đăng nhập](images/login.jpg)
+![Đăng ký](images/register.png)
+![Xác nhận OTP](images/otp.png)
 
 - Đăng nhập với email và mật khẩu
 - Đăng nhập với tài khoản Google
@@ -16,6 +24,9 @@
 
 ### 2. Khám Phá Món Ăn
 
+![Danh sách món ăn](images/home.png)
+![Chi tiết món ăn](images/menu_item.png)
+
 - Xem danh sách món ăn theo danh mục
 - Tìm kiếm món ăn
 - Xem chi tiết món ăn (hình ảnh, giá, mô tả)
@@ -23,18 +34,26 @@
 
 ### 3. Giỏ Hàng
 
+![Giỏ hàng](images/cart.jpg)
+![Chọn địa chỉ giao hàng](images/order_address.jpg)
+
 - Thêm/xóa món ăn vào giỏ hàng
 - Điều chỉnh số lượng
+- Chọn địa chỉ giao hàng
+- Áp dụng mã giảm giá
 - Xem tổng tiền
 - Lưu giỏ hàng
 
 ### 4. Đặt Hàng
 
-- Chọn địa chỉ giao hàng
+![Đặt hàng](images/payment_detail.jpg)
+
 - Chọn phương thức thanh toán
 - Xác nhận đơn hàng
 
 ### 5. Thanh Toán Online
+
+![Thanh toán VNPay](images/vnpay.jpg)
 
 - Tích hợp cổng thanh toán VNPay
 - Thanh toán an toàn và bảo mật
@@ -43,12 +62,19 @@
 
 ### 6. Quản Lý Đơn Hàng
 
+![Quản lý đơn hàng](images/order_status.jpg)
+![Chi tiết đơn hàng](images/review_order.jpg)
+
 - Theo dõi trạng thái đơn hàng
 - Xem lịch sử đơn hàng
 - Hủy đơn hàng
 - Đánh giá đơn hàng
 
 ### 7. Quản Lý Tài Khoản
+
+![Quản lý tài khoản](images/profile.jpg)
+![Cài đặt chung](images/setting.jpg)
+![Thông báo ứng dụng](images/notification.jpg)
 
 - Cập nhật thông tin cá nhân
 - Quản lý địa chỉ giao hàng
@@ -62,6 +88,7 @@
 - Retrofit2 cho API calls
 - Material Design Components
 - Glide cho xử lý hình ảnh
+- Google service cho Google Map và Firebase Cloud Messaging
 
 ## Yêu Cầu Hệ Thống
 
@@ -74,7 +101,7 @@
 1. Clone repository:
 
 ```bash
-git clone [https://github.com/raichuvn11/UIAppFastFood]
+git clone https://github.com/raichuvn11/UIAppFastFood
 ```
 
 2. Mở project trong Android Studio
